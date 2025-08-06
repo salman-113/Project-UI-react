@@ -85,7 +85,7 @@ const Products = () => {
     }
 
     setDisplayed(filtered);
-    setCurrentPage(1); // Reset to page 1 on filter/search/sort
+    setCurrentPage(1);
   }, [search, category, sort, products]);
 
   const handleAddToCart = async (product) => {
@@ -105,12 +105,7 @@ const Products = () => {
 
       const alreadyInCart = existingCart.find(item => item.id === product.id);
       if (alreadyInCart) {
-        toast.info(
-          <div className="flex items-center">
-            <FiAlertCircle className="mr-2" />
-            Item already in cart
-          </div>
-        );
+        
         return;
       }
 
@@ -166,15 +161,18 @@ const Products = () => {
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
+      className="min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-12"
+      style={{
+        background: "linear-gradient(to right, #000000ff 0%, #004e92 100%)"
+      }}
     >
       {/* Hero Section */}
       <div className="text-center mb-16">
-        <motion.h2 
+        <motion.h2
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
@@ -203,12 +201,12 @@ const Products = () => {
             placeholder="Search products..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="block w-full pl-10 pr-3 py-3 border border-[#708d81] rounded-full  text-[#f2e8cf] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#bf0603] focus:border-transparent transition-all duration-300 placeholder-[#708d81]/70"
+            className="block w-full pl-10 pr-3 py-3 border border-[#708d81] rounded-full text-[#f2e8cf] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#bf0603] focus:border-transparent transition-all duration-300 placeholder-[#708d81]/70"
           />
         </div>
 
         <div className="flex flex-col md:flex-row md:items-center justify-center gap-4">
-          <button 
+          <button
             onClick={() => setIsFilterOpen(!isFilterOpen)}
             className="flex items-center justify-center gap-2 px-4 py-2 bg-[#001427] border border-[#708d81] rounded-full shadow-sm hover:bg-[#001c3d] transition-colors text-[#f2e8cf]"
           >
@@ -264,7 +262,7 @@ const Products = () => {
 
       {/* Error */}
       {error && !loading && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="text-center py-20"
@@ -285,7 +283,7 @@ const Products = () => {
 
       {/* Empty */}
       {!loading && !error && currentProducts.length === 0 && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="text-center py-20"
@@ -307,14 +305,14 @@ const Products = () => {
 
       {/* Products */}
       {!loading && !error && currentProducts.length > 0 && (
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
         >
           {currentProducts.map((product) => (
-            <motion.div 
+            <motion.div
               key={product.id}
               variants={itemVariants}
               whileHover={{ y: -5 }}
@@ -345,11 +343,10 @@ const Products = () => {
               <button
                 key={pageNum}
                 onClick={() => handlePageChange(pageNum)}
-                className={`px-4 py-2 rounded-md border ${
-                  currentPage === pageNum
-                    ? 'bg-[#bf0603] text-[#f2e8cf]'
-                    : 'bg-[#001427] text-[#f2e8cf] border-[#708d81]'
-                } hover:bg-[#8d0801] transition-all duration-300`}
+                className={`px-4 py-2 rounded-md border ${currentPage === pageNum
+                  ? 'bg-[#bf0603] text-[#f2e8cf]'
+                  : 'bg-[#001427] text-[#f2e8cf] border-[#708d81]'
+                  } hover:bg-[#8d0801] transition-all duration-300`}
               >
                 {pageNum}
               </button>

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { AuthContext } from "./AuthContext";
 import { toast } from "react-toastify";
@@ -10,25 +10,29 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch user's cart from DB
-  const loadCart = async () => {
+  const loadCart = useCallback(async () => {
     if (!user) return;
     try {
       const res = await axios.get(`http://localhost:5000/users/${user.id}`);
-      setCart(res.data.cart || []);
+      const userCart = res.data.cart || [];
+
+      // Debug: Check image field
+      console.log("Loaded Cart:", userCart);
+
+      setCart(userCart);
     } catch (err) {
       console.error("Failed to load cart", err);
+      toast.error("Failed to load cart");
       setCart([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     loadCart();
-  }, [user]);
+  }, [loadCart]);
 
-  // Sync cart to DB
   const syncCartToDB = async (updatedCart) => {
     try {
       await axios.patch(`http://localhost:5000/users/${user.id}`, {
@@ -39,7 +43,6 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Add to Cart
   const addToCart = async (product) => {
     const exists = cart.find((item) => item.id === product.id);
     if (exists) {
@@ -53,7 +56,6 @@ export const CartProvider = ({ children }) => {
     toast.success("Added to cart!");
   };
 
-  // Remove from cart
   const removeFromCart = (id) => {
     const updatedCart = cart.filter((item) => item.id !== id);
     setCart(updatedCart);
@@ -61,14 +63,12 @@ export const CartProvider = ({ children }) => {
     toast.success("Removed from cart");
   };
 
-  // Clear cart
   const clearCart = () => {
     setCart([]);
     syncCartToDB([]);
     toast.success("Cart cleared");
   };
 
-  // Increment
   const incrementQty = (id) => {
     const updatedCart = cart.map((item) =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
@@ -77,12 +77,11 @@ export const CartProvider = ({ children }) => {
     syncCartToDB(updatedCart);
   };
 
-  // Decrement
   const decrementQty = (id) => {
     const updatedCart = cart
       .map((item) =>
         item.id === id
-          ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
+          ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 0 }
           : item
       )
       .filter((item) => item.quantity > 0);
@@ -91,7 +90,6 @@ export const CartProvider = ({ children }) => {
     syncCartToDB(updatedCart);
   };
 
-  // Total Price
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -114,3 +112,4 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+  

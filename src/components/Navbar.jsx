@@ -49,7 +49,7 @@ const Navbar = () => {
           className="text-[#f4d58d] font-bold text-xl tracking-wide"
           onClick={() => setActivePage("/")}
         >
-          ENERGY DRINK
+          EchoBay
         </Link>
 
         {/* Center-aligned navigation - hidden on mobile */}

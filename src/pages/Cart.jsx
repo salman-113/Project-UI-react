@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
@@ -33,9 +33,13 @@ const Cart = () => {
               >
                 <div className="flex items-center gap-4 w-full sm:w-2/3">
                   <img
-                    src={item.image || "/placeholder.jpg"}
+                    src={item.images?.[0] || item.image || '/default-product.png'}
                     alt={item.name}
                     className="w-20 h-20 object-cover rounded"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '/default-product.png';
+                    }}
                   />
                   <div>
                     <p className="font-semibold">{item.name}</p>

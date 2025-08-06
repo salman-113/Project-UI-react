@@ -43,7 +43,7 @@ const Login = () => {
         return;
       }
 
-      loginUser(user); // store user in context + localStorage
+      loginUser(user);
       toast.success("Login successful");
       navigate("/");
     } catch (err) {

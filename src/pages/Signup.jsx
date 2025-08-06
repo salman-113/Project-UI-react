@@ -29,14 +29,12 @@ const Signup = () => {
     }
 
     try {
-      // Check if user already exists
       const res = await axios.get(`http://localhost:5000/users?email=${email}`);
       if (res.data.length > 0) {
         toast.error("Email already registered");
         return;
       }
 
-      // Create new user
       const newUser = {
         id: uuid(),
         name,
@@ -53,7 +51,7 @@ const Signup = () => {
       await axios.post("http://localhost:5000/users", newUser);
 
       toast.success("Signup successful");
-      loginUser(newUser); // store in context + localStorage
+      loginUser(newUser);
       navigate("/");
     } catch (err) {
       console.error(err);

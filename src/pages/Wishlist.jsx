@@ -7,13 +7,13 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Wishlist = () => {
-  const { user, isLoading } = useContext(AuthContext); // ✅ use isLoading also
+  const { user, isLoading } = useContext(AuthContext);
   const { wishlist, setWishlist, removeFromWishlist } = useContext(WishlistContext);
   const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   const handleMoveToCart = async (product) => {
-    if (isLoading) return; // ⏳ Wait for user to load
+    if (isLoading) return; 
 
     if (!user) {
       toast.warn("Please login to add to cart");
@@ -35,13 +35,11 @@ const Wishlist = () => {
       const updatedCart = [...currentCart, { ...product, quantity: 1 }];
       const updatedWishlist = currentWishlist.filter((item) => item.id !== product.id);
 
-      // ✅ Update backend
       await axios.patch(`http://localhost:5000/users/${user.id}`, {
         cart: updatedCart,
         wishlist: updatedWishlist,
       });
 
-      // ✅ Update UI states
       setCart(updatedCart);
       setWishlist(updatedWishlist);
 
@@ -53,7 +51,7 @@ const Wishlist = () => {
   };
 
   if (isLoading) {
-    return <div className="text-center py-10 text-gray-500">Loading...</div>; // optional loading message
+    return <div className="text-center py-10 text-gray-500">Loading...</div>; 
   }
 
   return (
