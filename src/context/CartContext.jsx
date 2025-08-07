@@ -16,9 +16,6 @@ export const CartProvider = ({ children }) => {
       const res = await axios.get(`http://localhost:5000/users/${user.id}`);
       const userCart = res.data.cart || [];
 
-      // Debug: Check image field
-      console.log("Loaded Cart:", userCart);
-
       setCart(userCart);
     } catch (err) {
       console.error("Failed to load cart", err);
@@ -53,7 +50,6 @@ export const CartProvider = ({ children }) => {
     const updatedCart = [...cart, { ...product, quantity: 1 }];
     setCart(updatedCart);
     syncCartToDB(updatedCart);
-    toast.success("Added to cart!");
   };
 
   const removeFromCart = (id) => {
@@ -78,17 +74,38 @@ export const CartProvider = ({ children }) => {
   };
 
   const decrementQty = (id) => {
-    const updatedCart = cart
-      .map((item) =>
-        item.id === id
-          ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 0 }
-          : item
-      )
-      .filter((item) => item.quantity > 0);
+  const updatedCart = cart.map((item) => {
+    if (item.id === id && item.quantity > 1) {
+      return { ...item, quantity: item.quantity - 1 };
+    }
+    return item;
+  });
 
+  const decrementQty = (id) => {
+  const updatedCart = cart.map((item) => {
+    if (item.id === id && item.quantity > 1) {
+      return { ...item, quantity: item.quantity - 1 };
+    }
+    return item;
+  });
+
+  const isChanged = cart.some(
+    (item, index) => item.quantity !== updatedCart[index].quantity
+  );
+
+  if (isChanged) {
     setCart(updatedCart);
     syncCartToDB(updatedCart);
-  };
+  }
+};
+
+
+  if (isChanged) {
+    setCart(updatedCart);
+    syncCartToDB(updatedCart);
+  }
+};
+
 
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -100,6 +117,7 @@ export const CartProvider = ({ children }) => {
       value={{
         cart,
         loading,
+        cart,
         addToCart,
         removeFromCart,
         clearCart,

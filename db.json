@@ -25,30 +25,13 @@
       "created_at": "2025-08-05T13:38:10.879Z"
     },
     {
-      "id": "7b8bbec4-1d45-4abc-84fc-03adc93f171f",
-      "name": "Noushad",
-      "email": "noushad@gmail.com",
+      "id": "cdd08940-c5ee-4371-a448-a85cb7bfa849",
+      "name": "Mubeena",
+      "email": "muebeena@gmail.com",
       "password": "123456",
       "role": "user",
       "isBlock": false,
       "cart": [
-        {
-          "id": "1",
-          "name": "boAt Rockerz 480",
-          "description": "boAt Rockerz 480 W/RGB LEDs, 6 Light Modes, 40Mm Drivers, Beast Mode, 60Hrs Playback, Enx Tech, BT V5.3, Adaptive Fit & Easy Access Controls, Bluetooth Over Ear Headphones(Black Sabre)",
-          "price": 799,
-          "count": 25,
-          "category": "Boat",
-          "images": [
-            "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
-            "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg",
-            "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
-            "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg"
-          ],
-          "isActive": true,
-          "created_at": "2023-01-15T10:00:00Z",
-          "quantity": 1
-        },
         {
           "id": "2",
           "name": "Apple AirPods Max Wireless Over-Ear Headphones",
@@ -58,32 +41,84 @@
           "category": "Apple",
           "images": [
             "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
+            "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
             "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg"
           ],
           "isActive": true,
           "created_at": "2023-02-20T09:30:00Z",
-          "quantity": 1
-        }
-      ],
-      "wishlist": [],
-      "orders": [
+          "quantity": 3
+        },
         {
-          "id": "1",
-          "name": "boAt Rockerz 480",
-          "description": "boAt Rockerz 480 W/RGB LEDs, 6 Light Modes, 40Mm Drivers, Beast Mode, 60Hrs Playback, Enx Tech, BT V5.3, Adaptive Fit & Easy Access Controls, Bluetooth Over Ear Headphones(Black Sabre)",
-          "price": 799,
-          "count": 25,
-          "category": "Boat",
+          "id": "3",
+          "name": "Sony WH-1000XM4",
+          "description": "Industry Leading Wireless Noise Cancellation Bluetooth Over Ear Headphones with Mic for Phone Calls, 30 Hours Battery Life, Quick Charge, AUX, Touch Control and Voice Control - Black",
+          "price": 15999,
+          "count": 15,
+          "category": "Sony",
           "images": [
-            "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
-            "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg"
+            "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
+            "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
+            "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg"
           ],
           "isActive": true,
-          "created_at": "2023-01-15T10:00:00Z",
+          "created_at": "2023-03-10T14:15:00Z",
           "quantity": 1
         }
       ],
-      "created_at": "2025-08-06T04:22:26.399Z"
+      "wishlist": [
+        {
+          "id": "2",
+          "name": "Apple AirPods Max Wireless Over-Ear Headphones",
+          "description": "Pro-Level Active Noise Cancellation, Transparency Mode, Personalised Spatial Audio, USB-C Charging, Bluetooth Headphones for iPhone - Midnight",
+          "price": 56990,
+          "count": 8,
+          "category": "Apple",
+          "images": [
+            "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
+            "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
+            "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg"
+          ],
+          "isActive": true,
+          "created_at": "2023-02-20T09:30:00Z"
+        }
+      ],
+      "orders": [
+        {
+          "items": [
+            {
+              "id": "2",
+              "name": "Apple AirPods Max Wireless Over-Ear Headphones",
+              "description": "Pro-Level Active Noise Cancellation, Transparency Mode, Personalised Spatial Audio, USB-C Charging, Bluetooth Headphones for iPhone - Midnight",
+              "price": 56990,
+              "count": 8,
+              "category": "Apple",
+              "images": [
+                "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
+                "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg",
+                "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
+                "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg"
+              ],
+              "isActive": true,
+              "created_at": "2023-02-20T09:30:00Z",
+              "quantity": 1
+            }
+          ],
+          "total": 56990,
+          "date": "2025-08-07T07:23:03.663Z",
+          "status": "processing",
+          "shipping": {
+            "address": "Kozhikkkode",
+            "city": "Kozhikkode",
+            "state": "Kerala",
+            "zip": "673614"
+          },
+          "paymentMethod": "cod"
+        }
+      ],
+      "created_at": "2025-08-07T05:55:45.754Z"
     }
   ],
   "products": [
@@ -112,6 +147,8 @@
       "category": "Apple",
       "images": [
         "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
+        "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
         "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg"
       ],
       "isActive": true,
@@ -125,6 +162,8 @@
       "count": 15,
       "category": "Sony",
       "images": [
+        "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
+        "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg",
         "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
         "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg"
       ],
@@ -140,6 +179,8 @@
       "category": "Boat",
       "images": [
         "https://m.media-amazon.com/images/I/61ULAZmt9NL._SX522_.jpg",
+        "https://m.media-amazon.com/images/I/51OGN-Nlu7L._SL1080_.jpg",
+        "https://m.media-amazon.com/images/I/61ULAZmt9NL._SX522_.jpg",
         "https://m.media-amazon.com/images/I/51OGN-Nlu7L._SL1080_.jpg"
       ],
       "isActive": true,
@@ -153,6 +194,8 @@
       "count": 5,
       "category": "Bose",
       "images": [
+        "https://m.media-amazon.com/images/I/61V2OO10-wL._SX522_.jpg",
+        "https://m.media-amazon.com/images/I/51vbNaqQxmL._SL1500_.jpg",
         "https://m.media-amazon.com/images/I/61V2OO10-wL._SX522_.jpg",
         "https://m.media-amazon.com/images/I/51vbNaqQxmL._SL1500_.jpg"
       ],
@@ -168,6 +211,8 @@
       "category": "Redmi",
       "images": [
         "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
         "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg"
       ],
       "isActive": true,
@@ -181,8 +226,10 @@
       "count": 18,
       "category": "Boat",
       "images": [
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png",
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png"
+        "https://m.media-amazon.com/images/I/61+Vu6eCccL._SX522_.jpg",
+        "https://m.media-amazon.com/images/I/71zVXH2yiEL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61+Vu6eCccL._SX522_.jpg",
+        "https://m.media-amazon.com/images/I/71zVXH2yiEL._SL1500_.jpg"
       ],
       "isActive": true,
       "created_at": "2023-02-15T13:10:00Z"
@@ -195,8 +242,10 @@
       "count": 7,
       "category": "Apple",
       "images": [
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png",
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png"
+        "https://m.media-amazon.com/images/I/41JACWT-wWL._SX522_.jpg",
+        "https://m.media-amazon.com/images/I/81gqmwsufOL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/41JACWT-wWL._SX522_.jpg",
+        "https://m.media-amazon.com/images/I/81gqmwsufOL._SL1500_.jpg"
       ],
       "isActive": true,
       "created_at": "2023-04-12T09:15:00Z"
@@ -209,8 +258,10 @@
       "count": 22,
       "category": "Redmi",
       "images": [
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png",
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png"
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg"
       ],
       "isActive": true,
       "created_at": "2023-03-05T14:50:00Z"
@@ -223,8 +274,10 @@
       "count": 14,
       "category": "Boat",
       "images": [
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png",
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png"
+        "https://m.media-amazon.com/images/I/61V2OO10-wL._SX522_.jpg",
+        "https://m.media-amazon.com/images/I/51vbNaqQxmL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61V2OO10-wL._SX522_.jpg",
+        "https://m.media-amazon.com/images/I/51vbNaqQxmL._SL1500_.jpg"
       ],
       "isActive": true,
       "created_at": "2023-04-18T11:25:00Z"
@@ -237,8 +290,10 @@
       "count": 14,
       "category": "Boat",
       "images": [
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png",
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png"
+        "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg"
       ],
       "isActive": true,
       "created_at": "2023-04-18T11:25:00Z"
@@ -251,8 +306,10 @@
       "count": 14,
       "category": "Boat",
       "images": [
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png",
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png"
+        "https://m.media-amazon.com/images/I/61ULAZmt9NL._SX522_.jpg",
+        "https://m.media-amazon.com/images/I/51OGN-Nlu7L._SL1080_.jpg",
+        "https://m.media-amazon.com/images/I/61ULAZmt9NL._SX522_.jpg",
+        "https://m.media-amazon.com/images/I/51OGN-Nlu7L._SL1080_.jpg"
       ],
       "isActive": true,
       "created_at": "2023-04-18T11:25:00Z"
@@ -265,8 +322,10 @@
       "count": 14,
       "category": "Boat",
       "images": [
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png",
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png"
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg"
       ],
       "isActive": true,
       "created_at": "2023-04-18T11:25:00Z"
@@ -279,8 +338,10 @@
       "count": 14,
       "category": "Boat",
       "images": [
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png",
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png"
+        "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg"
       ],
       "isActive": true,
       "created_at": "2023-04-18T11:25:00Z"
@@ -293,8 +354,10 @@
       "count": 14,
       "category": "Boat",
       "images": [
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png",
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png"
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg"
       ],
       "isActive": true,
       "created_at": "2023-04-18T11:25:00Z"
@@ -307,8 +370,10 @@
       "count": 14,
       "category": "Boat",
       "images": [
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png",
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png"
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg"
       ],
       "isActive": true,
       "created_at": "2023-04-18T11:25:00Z"
@@ -321,8 +386,10 @@
       "count": 14,
       "category": "Boat",
       "images": [
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png",
-        "https://www.apple.com/v/airpods-max/i/images/overview/contrast/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png"
+        "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg"
       ],
       "isActive": true,
       "created_at": "2023-04-18T11:25:00Z"

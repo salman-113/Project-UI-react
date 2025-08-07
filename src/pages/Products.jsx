@@ -21,15 +21,14 @@ const Products = () => {
 
   const { user } = useContext(AuthContext);
 
+  // Updated categories to match your database
   const categories = [
     "All",
-    "Energy Shots",
-    "Sugar-Free",
-    "High-Performance",
-    "Natural",
-    "Limited Edition",
-    "Recovery",
-    "Hydration"
+    "Boat",
+    "Apple",
+    "Sony", 
+    "Bose",
+    "Redmi"
   ];
 
   useEffect(() => {
@@ -105,7 +104,7 @@ const Products = () => {
 
       const alreadyInCart = existingCart.find(item => item.id === product.id);
       if (alreadyInCart) {
-        
+
         return;
       }
 
@@ -114,11 +113,6 @@ const Products = () => {
         cart: updatedCart,
       });
 
-      toast.success(
-        <div className="flex items-center">
-          {product.name} added to cart!
-        </div>
-      );
     } catch (error) {
       toast.error(
         <div className="flex items-center">
@@ -178,7 +172,7 @@ const Products = () => {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-bold text-[#f4d58d] mb-4"
         >
-          ENERGY DRINK COLLECTION
+         GEAR UP FOR VICTORY
         </motion.h2>
         <motion.p
           initial={{ y: 50, opacity: 0 }}

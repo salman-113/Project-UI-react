@@ -5,12 +5,22 @@ import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 const Wishlist = () => {
   const { user, isLoading } = useContext(AuthContext);
   const { wishlist, setWishlist, removeFromWishlist } = useContext(WishlistContext);
-  const { cart, setCart } = useContext(CartContext);
+  const {setCart } = useContext(CartContext);
   const navigate = useNavigate();
+
+  // Color palette
+  const colors = {
+    background: "#001427",
+    text: "#f2e8cf",
+    accent: "#bf0603",
+    secondary: "#708d81",
+    highlight: "#f4d58d"
+  };
 
   const handleMoveToCart = async (product) => {
     if (isLoading) return; 
@@ -51,47 +61,124 @@ const Wishlist = () => {
   };
 
   if (isLoading) {
-    return <div className="text-center py-10 text-gray-500">Loading...</div>; 
+    return <div className="text-center py-10" style={{ color: colors.text }}>Loading...</div>; 
   }
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        when: "beforeChildren"
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
-      <h2 className="text-2xl font-bold text-pink-600 mb-6">My Wishlist</h2>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      style={{ 
+        background: colors.background,
+        color: colors.text
+      }}
+      className="min-h-screen"
+    >
+      <div className="max-w-6xl mx-auto px-4 py-10">
+        <motion.h2 
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="text-2xl font-bold mb-6"
+          style={{ color: colors.highlight }}
+        >
+          My Wishlist
+        </motion.h2>
 
-      {wishlist.length === 0 ? (
-        <p className="text-gray-500">Your wishlist is empty.</p>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {wishlist.map((product) => (
-            <div key={product.id} className="bg-white border rounded shadow p-4">
-              <img
-                src={product.images[0]}
-                alt={product.name}
-                className="w-full h-48 object-cover rounded mb-3"
-              />
-              <h3 className="text-lg font-semibold text-pink-700">{product.name}</h3>
-              <p className="text-gray-500">{product.category}</p>
-              <p className="font-bold text-pink-600 mb-3">₹{product.price}</p>
+        {wishlist.length === 0 ? (
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            style={{ color: colors.secondary }}
+          >
+            Your wishlist is empty.
+          </motion.p>
+        ) : (
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+          >
+            {wishlist.map((product) => (
+              <motion.div 
+                key={product.id}
+                variants={itemVariants}
+                whileHover={{ scale: 1.03 }}
+                className="border rounded-lg shadow-lg p-4"
+                style={{
+                  background: `rgba(0, 20, 39, 0.7)`,
+                  borderColor: colors.secondary,
+                  backdropFilter: 'blur(10px)'
+                }}
+              >
+                <motion.img
+                  src={product.images[0]}
+                  alt={product.name}
+                  className=" object-cover rounded mb-3"
+                  whileHover={{ scale: 1.05 }}
+                  style={{ border: `1px solid ${colors.secondary}` }}
+                />
+                <h3 className="text-lg font-semibold">{product.name}</h3>
+                <p style={{ color: colors.secondary }}>{product.category}</p>
+                <p className="font-bold mb-3" style={{ color: colors.highlight }}>₹{product.price}</p>
 
-              <div className="flex gap-3">
-                <button
-                  onClick={() => handleMoveToCart(product)}
-                  className="bg-pink-600 text-white px-3 py-1 rounded hover:bg-pink-700 text-sm"
-                >
-                  Move to Cart
-                </button>
-                <button
-                  onClick={() => removeFromWishlist(product.id)}
-                  className="border border-pink-600 text-pink-600 px-3 py-1 rounded text-sm"
-                >
-                  Remove
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+                <div className="flex gap-3">
+                  <motion.button
+                    onClick={() => handleMoveToCart(product)}
+                    className="px-3 py-1 rounded text-sm"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{
+                      background: colors.accent,
+                      color: colors.text
+                    }}
+                  >
+                    Move to Cart
+                  </motion.button>
+                  <motion.button
+                    onClick={() => removeFromWishlist(product.id)}
+                    className="px-3 py-1 rounded text-sm"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{
+                      border: `1px solid ${colors.accent}`,
+                      color: colors.accent,
+                      background: 'transparent'
+                    }}
+                  >
+                    Remove
+                  </motion.button>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </div>
+    </motion.div>
   );
 };
 

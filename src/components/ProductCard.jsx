@@ -25,13 +25,14 @@ const ProductCard = ({ product, onAddToCart }) => {
       navigate("/login");
       return;
     }
+    
     addToCart(product);
     toast.success(
       <div className="flex items-center text-[#f4d58d]">
-        <span className="mr-2">✓</span> Added to cart!
+        <span className="mr-2">✓</span> Added to cart
       </div>
     );
-    if (onAddToCart) onAddToCart(product);
+    if (onAddToCart) onAddToCart(product); 
   };
 
   const handleWishlist = () => {
@@ -63,17 +64,13 @@ const ProductCard = ({ product, onAddToCart }) => {
   };
 
   return (
-    <motion.div 
+    <motion.div
       whileHover={{ y: -5 }}
       className="relative rounded-xl p-4 overflow-hidden"
     >
-      {/* Pure Glass Background */}
       <div className="absolute inset-0 bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 shadow-lg" />
-      
-      {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#001427]/10 to-[#000000]/20 rounded-xl" />
 
-      {/* Wishlist Heart Icon */}
       <motion.div
         whileTap={{ scale: 0.9 }}
         className="absolute top-3 right-3 cursor-pointer z-10 p-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10"
@@ -86,7 +83,6 @@ const ProductCard = ({ product, onAddToCart }) => {
         )}
       </motion.div>
 
-      {/* Product Image - Square aspect ratio */}
       <div className="relative aspect-square w-full mb-4 rounded-lg overflow-hidden">
         <motion.img
           src={product.images[0]}
@@ -95,24 +91,22 @@ const ProductCard = ({ product, onAddToCart }) => {
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
         />
-        {/* Image glass overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-70" />
       </div>
 
-      {/* Product Info */}
       <div className="relative z-10 space-y-2">
         <h3 className="text-lg font-semibold text-[#f4d58d] truncate">{product.name}</h3>
         <p className="text-[#708d81] text-sm font-medium">{product.category}</p>
         <p className="text-[#f2e8cf] font-bold text-lg">
-          ${product.price.toFixed(2)}
-          <span className="text-[#708d81] text-xs ml-1">USD</span>
+          ₹{product.price.toFixed(2)}
+          <span className="text-[#708d81] text-xs ml-1"> INR</span>
         </p>
       </div>
 
       {/* Action Buttons */}
       <div className="relative z-10 mt-4 space-y-2">
         <motion.button
-          whileHover={{ 
+          whileHover={{
             scale: 1.02,
             background: "linear-gradient(135deg, #bf0603 0%, #8d0801 100%)"
           }}
