@@ -74,38 +74,22 @@ export const CartProvider = ({ children }) => {
   };
 
   const decrementQty = (id) => {
-  const updatedCart = cart.map((item) => {
-    if (item.id === id && item.quantity > 1) {
-      return { ...item, quantity: item.quantity - 1 };
+    const updatedCart = cart.map((item) => {
+      if (item.id === id && item.quantity > 1) {
+        return { ...item, quantity: item.quantity - 1 };
+      }
+      return item;
+    });
+
+    const isChanged = cart.some(
+      (item, index) => item.quantity !== updatedCart[index]?.quantity
+    );
+
+    if (isChanged) {
+      setCart(updatedCart);
+      syncCartToDB(updatedCart);
     }
-    return item;
-  });
-
-  const decrementQty = (id) => {
-  const updatedCart = cart.map((item) => {
-    if (item.id === id && item.quantity > 1) {
-      return { ...item, quantity: item.quantity - 1 };
-    }
-    return item;
-  });
-
-  const isChanged = cart.some(
-    (item, index) => item.quantity !== updatedCart[index].quantity
-  );
-
-  if (isChanged) {
-    setCart(updatedCart);
-    syncCartToDB(updatedCart);
-  }
-};
-
-
-  if (isChanged) {
-    setCart(updatedCart);
-    syncCartToDB(updatedCart);
-  }
-};
-
+  };
 
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -115,7 +99,6 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
-        cart,
         loading,
         cart,
         addToCart,
@@ -130,4 +113,3 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
-  

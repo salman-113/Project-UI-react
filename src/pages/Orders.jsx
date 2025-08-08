@@ -16,7 +16,6 @@ const Orders = () => {
     try {
       setLoading(true);
       const res = await axios.get(`http://localhost:5000/users/${user.id}`);
-      // Use the status from database, don't mock it
       const ordersData = res.data.orders || [];
       setOrders(ordersData.map(order => ({
         ...order,
@@ -130,7 +129,7 @@ const Orders = () => {
           className="space-y-8"
         >
           {orders
-            .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by newest first
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map((order, index) => (
               <motion.div
                 key={index}

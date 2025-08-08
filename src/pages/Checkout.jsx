@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -166,7 +166,6 @@ const Checkout = () => {
           Checkout
         </motion.h2>
 
-        {/* Stepper */}
         <div className="flex justify-between mb-8">
           {[1, 2, 3].map((step) => (
             <div key={step} className="flex flex-col items-center">
@@ -208,7 +207,6 @@ const Checkout = () => {
           </motion.div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Order Summary */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -258,13 +256,11 @@ const Checkout = () => {
               </div>
             </motion.div>
 
-            {/* Checkout Form */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               className="bg-[#001427]/20 p-6 rounded-xl border border-[#708d81]/20"
             >
-              {/* Step 1: Shipping */}
               {currentStep === 1 && (
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -311,7 +307,6 @@ const Checkout = () => {
                 </motion.div>
               )}
 
-              {/* Step 2: Payment */}
               {currentStep === 2 && (
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -402,7 +397,6 @@ const Checkout = () => {
                 </motion.div>
               )}
 
-              {/* Step 3: Review */}
               {currentStep === 3 && (
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -471,7 +465,6 @@ const Checkout = () => {
                 </motion.div>
               )}
 
-              {/* Navigation Buttons */}
               <div className="flex justify-between mt-8">
                 {currentStep > 1 ? (
                   <motion.button

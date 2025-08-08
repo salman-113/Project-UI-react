@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
-import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUserWithAPI } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -17,39 +16,9 @@ const Login = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    const { email, password } = form;
-
-    if (!email || !password) {
-      toast.warn("Please enter email and password");
-      return;
-    }
-
-    try {
-      const res = await axios.get(
-        `http://localhost:5000/users?email=${email}&password=${password}`
-      );
-
-      if (res.data.length === 0) {
-        toast.error("Invalid credentials");
-        return;
-      }
-
-      const user = res.data[0];
-
-      if (user.isBlock) {
-        toast.error("Your account has been blocked");
-        return;
-      }
-
-      loginUser(user);
-      toast.success("Login successful");
-      navigate("/");
-    } catch (err) {
-      toast.error("Login failed");
-      console.error(err);
-    }
+    loginUserWithAPI(form, navigate, toast);
   };
 
   return (

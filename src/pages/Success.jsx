@@ -1,11 +1,9 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Success = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#001427] px-4 py-12">
-      {/* Success Animation Container */}
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -13,7 +11,6 @@ const Success = () => {
         className="mb-10"
       >
         <div className="relative w-64 h-64 flex items-center justify-center">
-          {/* Animated Checkmark */}
           <svg
             className="w-full h-full"
             viewBox="0 0 100 100"
@@ -44,8 +41,6 @@ const Success = () => {
           </svg>
         </div>
       </motion.div>
-
-      {/* Heading */}
       <motion.h2
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -54,8 +49,6 @@ const Success = () => {
       >
         Order Confirmed!
       </motion.h2>
-
-      {/* Description */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -73,7 +66,6 @@ const Success = () => {
         </p>
       </motion.div>
 
-      {/* Button */}
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -101,7 +93,6 @@ const Success = () => {
         </Link>
       </motion.div>
 
-      {/* Order Details (optional) */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -111,7 +102,6 @@ const Success = () => {
         <p>Need help? <Link to="/contact" className="text-[#f4d58d] hover:underline">Contact us</Link></p>
       </motion.div>
 
-      {/* CSS Animation Keyframes */}
       <style jsx>{`
         @keyframes drawCircle {
           to {

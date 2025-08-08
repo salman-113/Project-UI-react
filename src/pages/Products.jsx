@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import { toast } from "react-toastify";
@@ -21,7 +21,6 @@ const Products = () => {
 
   const { user } = useContext(AuthContext);
 
-  // Updated categories to match your database
   const categories = [
     "All",
     "Boat",
@@ -104,7 +103,6 @@ const Products = () => {
 
       const alreadyInCart = existingCart.find(item => item.id === product.id);
       if (alreadyInCart) {
-
         return;
       }
 
@@ -164,7 +162,6 @@ const Products = () => {
         background: "linear-gradient(to right, #000000ff 0%, #004e92 100%)"
       }}
     >
-      {/* Hero Section */}
       <div className="text-center mb-16">
         <motion.h2
           initial={{ y: -50, opacity: 0 }}
@@ -184,7 +181,6 @@ const Products = () => {
         </motion.p>
       </div>
 
-      {/* Search and Filters */}
       <div className="mb-12">
         <div className="relative max-w-xl mx-auto mb-6">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -247,14 +243,12 @@ const Products = () => {
         </div>
       </div>
 
-      {/* Loading Spinner */}
       {loading && (
         <div className="flex justify-center py-20">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#bf0603]"></div>
         </div>
       )}
 
-      {/* Error */}
       {error && !loading && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -275,7 +269,6 @@ const Products = () => {
         </motion.div>
       )}
 
-      {/* Empty */}
       {!loading && !error && currentProducts.length === 0 && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -297,7 +290,6 @@ const Products = () => {
         </motion.div>
       )}
 
-      {/* Products */}
       {!loading && !error && currentProducts.length > 0 && (
         <motion.div
           variants={containerVariants}
@@ -328,7 +320,6 @@ const Products = () => {
         </motion.div>
       )}
 
-      {/* Pagination */}
       {!loading && !error && totalPages > 1 && (
         <div className="mt-10 flex justify-center space-x-2">
           {[...Array(totalPages)].map((_, idx) => {

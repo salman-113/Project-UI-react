@@ -13,7 +13,6 @@ const Wishlist = () => {
   const {setCart } = useContext(CartContext);
   const navigate = useNavigate();
 
-  // Color palette
   const colors = {
     background: "#001427",
     text: "#f2e8cf",

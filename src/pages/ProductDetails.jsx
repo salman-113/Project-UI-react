@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { CartContext } from "../context/CartContext";
@@ -42,7 +42,6 @@ const ProductDetails = () => {
     const productWithQty = { ...product, quantity };
     addToCart(productWithQty);
     
-    // Only show success toast if item wasn't already in cart
     if (!isInCart) {
       toast.success(
         <div className="flex items-center text-[#f4d58d]">
@@ -99,14 +98,12 @@ const ProductDetails = () => {
       className="mx-auto px-4 sm:px-6 py-8 sm:py-12 bg-gradient-to-br from-[#0a192f] via-[#0f1b32] to-[#020617] min-h-screen"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
-        {/* Image Gallery */}
         <motion.div 
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
           className="flex flex-col sm:flex-row gap-4 w-full"
         >
-          {/* Thumbnail Gallery - Left Side */}
           {product.images.length > 1 && (
             <motion.div 
               className="flex sm:flex-row lg:flex-col gap-2 sm:gap-3 w-full sm:w-20 overflow-x-auto sm:overflow-x-visible pb-2 sm:pb-0"
@@ -136,7 +133,6 @@ const ProductDetails = () => {
             </motion.div>
           )}
 
-          {/* Main Image */}
           <div className="flex-1 w-full">
             <motion.div
               key={selectedImage}
@@ -158,7 +154,6 @@ const ProductDetails = () => {
                 />
               </AnimatePresence>
               
-              {/* Wishlist Button */}
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -186,7 +181,6 @@ const ProductDetails = () => {
           </div>
         </motion.div>
 
-        {/* Product Info */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -239,7 +233,6 @@ const ProductDetails = () => {
             </p>
           </motion.div>
 
-          {/* Add to Cart Button */}
           <motion.button
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -255,7 +248,6 @@ const ProductDetails = () => {
             Add to Cart
           </motion.button>
 
-          {/* Additional Info */}
           <motion.div 
             className="pt-4 sm:pt-6 border-t border-[#708d81]/20"
             initial={{ opacity: 0 }}

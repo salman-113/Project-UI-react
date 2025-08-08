@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { WishlistContext } from "../context/WishlistContext";
@@ -103,7 +103,6 @@ const ProductCard = ({ product, onAddToCart }) => {
         </p>
       </div>
 
-      {/* Action Buttons */}
       <div className="relative z-10 mt-4 space-y-2">
         <motion.button
           whileHover={{

@@ -7,13 +7,11 @@ export const WishlistProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState([]);
   const [user, setUser] = useState(null);
 
-  // 🔁 Keep user synced with localStorage
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     setUser(storedUser);
-  }, [localStorage.getItem("user")]); // force update if localStorage changes
+  }, [localStorage.getItem("user")]);
 
-  // 🔃 Fetch wishlist from backend when user changes
   useEffect(() => {
     const fetchWishlist = async () => {
       if (!user) return;
@@ -28,7 +26,6 @@ export const WishlistProvider = ({ children }) => {
     fetchWishlist();
   }, [user]);
 
-  // ➕ Add to wishlist
   const addToWishlist = async (product) => {
     if (!user) return;
 
@@ -51,7 +48,6 @@ export const WishlistProvider = ({ children }) => {
     }
   };
 
-  // ❌ Remove from wishlist
   const removeFromWishlist = async (id) => {
     if (!user) return;
 
@@ -66,7 +62,6 @@ export const WishlistProvider = ({ children }) => {
     }
   };
 
-  // 🧹 Clear wishlist
   const clearWishlist = async () => {
     if (!user) return;
 

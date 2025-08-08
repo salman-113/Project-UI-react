@@ -36,14 +36,12 @@ const Navbar = () => {
     return activePage === path ? "text-[#f4d58d] font-bold" : "text-[#708d81] hover:text-[#f4d58d]";
   };
 
-  // Calculate counts from contexts
   const cartCount = cart?.length || 0;
   const wishlistCount = wishlist?.length || 0;
 
   return (
     <nav className="bg-[#001427] text-[#708d81] py-4 px-6 relative border-b border-[#708d81]/20">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
-        {/* Left-aligned company name */}
         <Link 
           to="/" 
           className="text-[#f4d58d] font-bold text-xl tracking-wide"
@@ -52,7 +50,6 @@ const Navbar = () => {
           EchoBay
         </Link>
 
-        {/* Center-aligned navigation - hidden on mobile */}
         <div className="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
           <Link 
             to="/" 
@@ -77,9 +74,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Right-aligned section */}
         <div className="flex items-center space-x-4">
-          {/* Desktop-only icons */}
           <div className="hidden md:flex items-center space-x-4">
             <Link 
               to="/wishlist" 
@@ -108,7 +103,6 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* User/Auth Section */}
           {user ? (
             <div className="relative">
               <button 
@@ -151,7 +145,6 @@ const Navbar = () => {
             </Link>
           )}
 
-          {/* Mobile menu button - only visible on mobile */}
           <button 
             className="md:hidden text-[#708d81] hover:text-[#f4d58d] focus:outline-none transition-colors"
             onClick={toggleMobileMenu}
@@ -161,7 +154,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-[#001427] border-t border-[#708d81]/20 absolute top-full left-0 right-0 z-40 py-4 px-6">
           <div className="flex flex-col space-y-4">
