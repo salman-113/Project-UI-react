@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const { loginUserWithAPI } = useContext(AuthContext);
@@ -22,41 +23,99 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto py-10 px-4">
-      <h2 className="text-2xl font-bold text-pink-600 mb-6 text-center">Login</h2>
-      <form onSubmit={handleLogin} className="space-y-4">
-        <input
-          type="email"
-          name="email"
-          placeholder="Email address"
-          value={form.email}
-          onChange={handleChange}
-          className="w-full border px-3 py-2 rounded"
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          className="w-full border px-3 py-2 rounded"
-        />
-        <button
-          type="submit"
-          className="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded"
+    <div 
+      className="min-h-screen flex items-center justify-center p-4"
+      style={{
+        backgroundImage: "url('https://www.apple.com/v/airpods-max/i/images/overview/product-stories/anc/anc_airpod_max_lifestyle__duzobvqwpz42_large_2x.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="w-full max-w-md p-8 rounded-2xl backdrop-blur-lg bg-white/10 border border-white/20 shadow-xl"
+        style={{
+          boxShadow: "0 8px 32px 0 rgba(191, 6, 3, 0.2)"
+        }}
+      >
+        <motion.h2 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="text-3xl font-bold mb-8 text-center"
+          style={{ color: "#f4d58d" }}
         >
-          Login
-        </button>
-      </form>
-      <p className="text-sm text-center mt-4">
-        Don’t have an account?{" "}
-        <span
-          onClick={() => navigate("/signup")}
-          className="text-pink-600 cursor-pointer underline"
+          Welcome Back
+        </motion.h2>
+        
+        <form onSubmit={handleLogin} className="space-y-6">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            <input
+              type="email"
+              name="email"
+              placeholder="Email address"
+              value={form.email}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-#f4d58d placeholder-white/70 text-white"
+              required
+            />
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+          >
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-#f4d58d placeholder-white/70 text-white"
+              required
+            />
+          </motion.div>
+          
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            type="submit"
+            className="w-full py-3 rounded-lg font-semibold transition-all duration-300"
+            style={{
+              backgroundColor: "#bf0603",
+              color: "#f2e8cf",
+              boxShadow: "0 4px 14px 0 rgba(191, 6, 3, 0.4)"
+            }}
+          >
+            Login
+          </motion.button>
+        </form>
+
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+          className="text-center mt-6 text-sm"
+          style={{ color: "#f2e8cf" }}
         >
-          Signup here
-        </span>
-      </p>
+          Don't have an account?{" "}
+          <span
+            onClick={() => navigate("/signup")}
+            className="cursor-pointer font-semibold hover:underline"
+            style={{ color: "#f4d58d" }}
+          >
+            Sign up
+          </span>
+        </motion.p>
+      </motion.div>
     </div>
   );
 };

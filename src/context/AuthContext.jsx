@@ -87,7 +87,12 @@ export const AuthProvider = ({ children }) => {
 
       loginUser(user);
       toast.success("Login successful");
-      navigate("/");
+
+      if (user.role === "admin") {
+        navigate("/");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       toast.error("Login failed");
       console.error(err);
@@ -96,7 +101,14 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, loginUser, logoutUser, isLoading, signupUser, loginUserWithAPI }}
+      value={{ 
+        user, 
+        loginUser, 
+        logoutUser, 
+        isLoading, 
+        signupUser, 
+        loginUserWithAPI 
+      }}
     >
       {!isLoading && children}
     </AuthContext.Provider>

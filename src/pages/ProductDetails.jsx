@@ -15,7 +15,6 @@ const ProductDetails = () => {
   const { addToWishlist, removeFromWishlist, wishlist } = useContext(WishlistContext);
 
   const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
 
   const isInWishlist = wishlist?.some((item) => item.id === id);
@@ -39,15 +38,11 @@ const ProductDetails = () => {
 
     const isInCart = cartItems?.some((item) => item.id === id);
     
-    const productWithQty = { ...product, quantity };
+    const productWithQty = { ...product };
     addToCart(productWithQty);
     
     if (!isInCart) {
-      toast.success(
-        <div className="flex items-center text-[#f4d58d]">
-          <span className="mr-2">✓</span> Added to cart!
-        </div>
-      );
+     
     }
   };
 

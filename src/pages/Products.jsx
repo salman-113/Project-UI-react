@@ -37,7 +37,6 @@ const Products = () => {
 
       try {
         const response = await axios.get("http://localhost:5000/products", {
-          timeout: 5000
         });
 
         if (!response.data || !Array.isArray(response.data)) {

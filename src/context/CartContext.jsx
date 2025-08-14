@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import { createContext, useContext, useEffect, useState, useCallback, useMemo } from "react";
 import axios from "axios";
 import { AuthContext } from "./AuthContext";
 import { toast } from "react-toastify";
@@ -15,7 +15,6 @@ export const CartProvider = ({ children }) => {
     try {
       const res = await axios.get(`http://localhost:5000/users/${user.id}`);
       const userCart = res.data.cart || [];
-
       setCart(userCart);
     } catch (err) {
       console.error("Failed to load cart", err);
@@ -30,7 +29,7 @@ export const CartProvider = ({ children }) => {
     loadCart();
   }, [loadCart]);
 
-  const syncCartToDB = async (updatedCart) => {
+  const syncCartToDB = useCallback(async (updatedCart) => {
     try {
       await axios.patch(`http://localhost:5000/users/${user.id}`, {
         cart: updatedCart,
@@ -38,63 +37,80 @@ export const CartProvider = ({ children }) => {
     } catch (err) {
       toast.error("Cart update failed");
     }
-  };
+  }, [user]);
 
-  const addToCart = async (product) => {
-    const exists = cart.find((item) => item.id === product.id);
-    if (exists) {
-      toast.info("Item already in cart");
-      return;
-    }
+  const addToCart = useCallback(
+  async (product) => {
+    setCart((prevCart) => {
+      const exists = prevCart.find((item) => item.id === product.id);
+      if (exists) {
+        toast.info("Item already in cart");
+        return prevCart;
+      }
+      const updatedCart = [...prevCart, { ...product, quantity: 1 }];
+      syncCartToDB(updatedCart);
+      toast.success("Added to cart");
+      return updatedCart;
+    });
+  },
+  [syncCartToDB]
+);
 
-    const updatedCart = [...cart, { ...product, quantity: 1 }];
-    setCart(updatedCart);
-    syncCartToDB(updatedCart);
-  };
+  const removeFromCart = useCallback(
+    (id) => {
+      setCart((prevCart) => {
+        const updatedCart = prevCart.filter((item) => item.id !== id);
+        syncCartToDB(updatedCart);
+        toast.success("Removed from cart");
+        return updatedCart;
+      });
+    },
+    [syncCartToDB]
+  );
 
-  const removeFromCart = (id) => {
-    const updatedCart = cart.filter((item) => item.id !== id);
-    setCart(updatedCart);
-    syncCartToDB(updatedCart);
-    toast.success("Removed from cart");
-  };
-
-  const clearCart = () => {
+  const clearCart = useCallback(() => {
     setCart([]);
     syncCartToDB([]);
     toast.success("Cart cleared");
-  };
+  }, [syncCartToDB]);
 
-  const incrementQty = (id) => {
-    const updatedCart = cart.map((item) =>
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-    );
-    setCart(updatedCart);
-    syncCartToDB(updatedCart);
-  };
-
-  const decrementQty = (id) => {
-    const updatedCart = cart.map((item) => {
-      if (item.id === id && item.quantity > 1) {
-        return { ...item, quantity: item.quantity - 1 };
-      }
-      return item;
-    });
-
-    const isChanged = cart.some(
-      (item, index) => item.quantity !== updatedCart[index]?.quantity
-    );
-
-    if (isChanged) {
-      setCart(updatedCart);
-      syncCartToDB(updatedCart);
-    }
-  };
-
-  const totalPrice = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
+  const incrementQty = useCallback(
+    (id) => {
+      setCart((prevCart) => {
+        const updatedCart = prevCart.map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+        syncCartToDB(updatedCart);
+        return updatedCart;
+      });
+    },
+    [syncCartToDB]
   );
+
+  const decrementQty = useCallback(
+    (id) => {
+      setCart((prevCart) => {
+        const updatedCart = prevCart.map((item) =>
+          item.id === id && item.quantity > 1
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        );
+        const isChanged = prevCart.some(
+          (item, index) => item.quantity !== updatedCart[index]?.quantity
+        );
+        if (isChanged) {
+          syncCartToDB(updatedCart);
+          return updatedCart;
+        }
+        return prevCart;
+      });
+    },
+    [syncCartToDB]
+  );
+
+  const totalPrice = useMemo(() => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  }, [cart]);
 
   return (
     <CartContext.Provider

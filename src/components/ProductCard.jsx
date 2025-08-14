@@ -16,24 +16,19 @@ const ProductCard = ({ product, onAddToCart }) => {
   const isInWishlist = wishlist?.some((item) => item.id === product.id);
 
   const handleAddToCart = () => {
-    if (!user && !isLoading) {
-      toast.warn(
-        <div className="flex items-center text-[#f4d58d]">
-          <span className="mr-2">⚠️</span> Please login to add items to cart
-        </div>
-      );
-      navigate("/login");
-      return;
-    }
-    
-    addToCart(product);
-    toast.success(
+  if (!user && !isLoading) {
+    toast.warn(
       <div className="flex items-center text-[#f4d58d]">
-        <span className="mr-2">✓</span> Added to cart
+        <span className="mr-2">⚠️</span> Please login to add items to cart
       </div>
     );
-    if (onAddToCart) onAddToCart(product); 
-  };
+    navigate("/login");
+    return;
+  }
+  
+  addToCart(product);
+  if (onAddToCart) onAddToCart(product); 
+};
 
   const handleWishlist = () => {
     if (!user && !isLoading) {

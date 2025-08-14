@@ -4,13 +4,30 @@
       "id": "1",
       "username": "admin",
       "email": "admin@example.com",
-      "password": "admin123",
+      "password": "1234567",
       "role": "admin",
       "isBlock": false,
       "cart": [],
       "orders": [],
-      "wishlist": [],
-      "created_at": "2023-01-01T00:00:00Z"
+      "wishlist": [
+        {
+          "name": "boAt Rockerz 480",
+          "description": "boAt Rockerz 480 W/RGB LEDs, 6 Light Modes, 40Mm Drivers, Beast Mode, 60Hrs Playback, Enx Tech, BT V5.3, Adaptive Fit & Easy Access Controls, Bluetooth Over Ear Headphones(Black Sabre)",
+          "price": 899,
+          "count": 25,
+          "category": "Boat",
+          "images": [
+            "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg"
+          ],
+          "isActive": true,
+          "id": "1"
+        }
+      ],
+      "created_at": "2023-01-01T00:00:00Z",
+      "status": "active"
     },
     {
       "id": "0a1acc05-3158-4197-a7ce-30a42296319a",
@@ -21,10 +38,9 @@
       "isBlock": false,
       "cart": [
         {
-          "id": "1",
           "name": "boAt Rockerz 480",
           "description": "boAt Rockerz 480 W/RGB LEDs, 6 Light Modes, 40Mm Drivers, Beast Mode, 60Hrs Playback, Enx Tech, BT V5.3, Adaptive Fit & Easy Access Controls, Bluetooth Over Ear Headphones(Black Sabre)",
-          "price": 799,
+          "price": 899,
           "count": 25,
           "category": "Boat",
           "images": [
@@ -34,43 +50,8 @@
             "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg"
           ],
           "isActive": true,
-          "created_at": "2023-01-15T10:00:00Z",
-          "quantity": 2
-        },
-        {
-          "id": "2",
-          "name": "Apple AirPods Max Wireless Over-Ear Headphones",
-          "description": "Pro-Level Active Noise Cancellation, Transparency Mode, Personalised Spatial Audio, USB-C Charging, Bluetooth Headphones for iPhone - Midnight",
-          "price": 56990,
-          "count": 8,
-          "category": "Apple",
-          "images": [
-            "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
-            "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg",
-            "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
-            "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg"
-          ],
-          "isActive": true,
-          "created_at": "2023-02-20T09:30:00Z",
+          "id": "1",
           "quantity": 1
-        }
-      ],
-      "wishlist": [
-        {
-          "id": "2",
-          "name": "Apple AirPods Max Wireless Over-Ear Headphones",
-          "description": "Pro-Level Active Noise Cancellation, Transparency Mode, Personalised Spatial Audio, USB-C Charging, Bluetooth Headphones for iPhone - Midnight",
-          "price": 56990,
-          "count": 8,
-          "category": "Apple",
-          "images": [
-            "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
-            "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg",
-            "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
-            "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg"
-          ],
-          "isActive": true,
-          "created_at": "2023-02-20T09:30:00Z"
         },
         {
           "id": "3",
@@ -86,7 +67,8 @@
             "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg"
           ],
           "isActive": true,
-          "created_at": "2023-03-10T14:15:00Z"
+          "created_at": "2023-03-10T14:15:00Z",
+          "quantity": 1
         },
         {
           "id": "4",
@@ -102,11 +84,46 @@
             "https://m.media-amazon.com/images/I/51OGN-Nlu7L._SL1080_.jpg"
           ],
           "isActive": true,
-          "created_at": "2023-01-25T11:20:00Z"
+          "created_at": "2023-01-25T11:20:00Z",
+          "quantity": 1
         }
       ],
-      "orders": [],
-      "created_at": "2025-08-05T13:38:10.879Z"
+      "wishlist": [],
+      "orders": [
+        {
+          "items": [
+            {
+              "id": "3",
+              "name": "Sony WH-1000XM4",
+              "description": "Industry Leading Wireless Noise Cancellation Bluetooth Over Ear Headphones with Mic for Phone Calls, 30 Hours Battery Life, Quick Charge, AUX, Touch Control and Voice Control - Black",
+              "price": 15999,
+              "count": 15,
+              "category": "Sony",
+              "images": [
+                "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
+                "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg",
+                "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
+                "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg"
+              ],
+              "isActive": true,
+              "created_at": "2023-03-10T14:15:00Z",
+              "quantity": 1
+            }
+          ],
+          "total": 15999,
+          "date": "2025-08-12T14:11:46.294Z",
+          "status": "processing",
+          "shipping": {
+            "address": "Kozhikkkode",
+            "city": "Kozhikkode",
+            "state": "Kerala",
+            "zip": "673614"
+          },
+          "paymentMethod": "cod"
+        }
+      ],
+      "created_at": "2025-08-05T13:38:10.879Z",
+      "status": "active"
     },
     {
       "id": "573e40c6-255e-494d-9d73-93ca3dc39ff9",
@@ -115,43 +132,8 @@
       "password": "123456",
       "role": "user",
       "isBlock": false,
-      "cart": [
-        {
-          "id": "2",
-          "name": "Apple AirPods Max Wireless Over-Ear Headphones",
-          "description": "Pro-Level Active Noise Cancellation, Transparency Mode, Personalised Spatial Audio, USB-C Charging, Bluetooth Headphones for iPhone - Midnight",
-          "price": 56990,
-          "count": 8,
-          "category": "Apple",
-          "images": [
-            "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
-            "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg",
-            "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
-            "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg"
-          ],
-          "isActive": true,
-          "created_at": "2023-02-20T09:30:00Z",
-          "quantity": 1
-        }
-      ],
-      "wishlist": [
-        {
-          "id": "3",
-          "name": "Sony WH-1000XM4",
-          "description": "Industry Leading Wireless Noise Cancellation Bluetooth Over Ear Headphones with Mic for Phone Calls, 30 Hours Battery Life, Quick Charge, AUX, Touch Control and Voice Control - Black",
-          "price": 15999,
-          "count": 15,
-          "category": "Sony",
-          "images": [
-            "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
-            "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg",
-            "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
-            "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg"
-          ],
-          "isActive": true,
-          "created_at": "2023-03-10T14:15:00Z"
-        }
-      ],
+      "cart": [],
+      "wishlist": [],
       "orders": [
         {
           "items": [
@@ -174,26 +156,167 @@
             }
           ],
           "total": 56990,
-          "date": "2025-08-07T14:05:28.838Z",
-          "status": "processing",
+          "date": "2025-08-12T11:43:27.464Z",
+          "status": "shipped",
           "shipping": {
             "address": "Kozhikkkode",
             "city": "Kozhikkode",
             "state": "Kerala",
             "zip": "673614"
           },
-          "paymentMethod": "cod"
+          "paymentMethod": "cod",
+          "userId": "573e40c6-255e-494d-9d73-93ca3dc39ff9",
+          "user": "Muhammed",
+          "userEmail": "muhammed@gmail.com"
+        },
+        {
+          "items": [
+            {
+              "id": "3",
+              "name": "Sony WH-1000XM4",
+              "description": "Industry Leading Wireless Noise Cancellation Bluetooth Over Ear Headphones with Mic for Phone Calls, 30 Hours Battery Life, Quick Charge, AUX, Touch Control and Voice Control - Black",
+              "price": 15999,
+              "count": 15,
+              "category": "Sony",
+              "images": [
+                "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
+                "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg",
+                "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
+                "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg"
+              ],
+              "isActive": true,
+              "created_at": "2023-03-10T14:15:00Z",
+              "quantity": 1
+            },
+            {
+              "id": "2",
+              "name": "Apple AirPods Max Wireless Over-Ear Headphones",
+              "description": "Pro-Level Active Noise Cancellation, Transparency Mode, Personalised Spatial Audio, USB-C Charging, Bluetooth Headphones for iPhone - Midnight",
+              "price": 56990,
+              "count": 8,
+              "category": "Apple",
+              "images": [
+                "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
+                "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg",
+                "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
+                "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg"
+              ],
+              "isActive": true,
+              "created_at": "2023-02-20T09:30:00Z",
+              "quantity": 1
+            }
+          ],
+          "total": 72989,
+          "date": "2025-08-12T14:00:40.041Z",
+          "status": "delivered",
+          "shipping": {
+            "address": "THAYYULLATHIL",
+            "city": "KOZHIKODE",
+            "state": "Kerala",
+            "zip": "673524"
+          },
+          "paymentMethod": "cod",
+          "userId": "573e40c6-255e-494d-9d73-93ca3dc39ff9",
+          "user": "Muhammed",
+          "userEmail": "muhammed@gmail.com"
+        },
+        {
+          "items": [
+            {
+              "id": "3",
+              "name": "Sony WH-1000XM4",
+              "description": "Industry Leading Wireless Noise Cancellation Bluetooth Over Ear Headphones with Mic for Phone Calls, 30 Hours Battery Life, Quick Charge, AUX, Touch Control and Voice Control - Black",
+              "price": 15999,
+              "count": 15,
+              "category": "Sony",
+              "images": [
+                "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
+                "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg",
+                "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
+                "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg"
+              ],
+              "isActive": true,
+              "created_at": "2023-03-10T14:15:00Z",
+              "quantity": 1
+            },
+            {
+              "id": "5",
+              "name": "Bose QuietComfort Bluetooth Headphones",
+              "description": "13.6-inch Liquid Retina display, 8-core CPU, 8GB RAM, 256GB SSD",
+              "price": 29999,
+              "count": 5,
+              "category": "Bose",
+              "images": [
+                "https://m.media-amazon.com/images/I/61V2OO10-wL._SX522_.jpg",
+                "https://m.media-amazon.com/images/I/51vbNaqQxmL._SL1500_.jpg",
+                "https://m.media-amazon.com/images/I/61V2OO10-wL._SX522_.jpg",
+                "https://m.media-amazon.com/images/I/51vbNaqQxmL._SL1500_.jpg"
+              ],
+              "isActive": true,
+              "created_at": "2023-04-05T10:45:00Z",
+              "quantity": 1
+            }
+          ],
+          "total": 45998,
+          "date": "2025-08-12T14:01:29.933Z",
+          "status": "cancelled",
+          "shipping": {
+            "address": "THAYYULLATHIL",
+            "city": "KOZHIKODE",
+            "state": "Kerala",
+            "zip": "673524"
+          },
+          "paymentMethod": "cod",
+          "userId": "573e40c6-255e-494d-9d73-93ca3dc39ff9",
+          "user": "Muhammed",
+          "userEmail": "muhammed@gmail.com"
         }
       ],
-      "created_at": "2025-08-07T14:04:55.908Z"
+      "created_at": "2025-08-07T14:04:55.908Z",
+      "status": "active"
+    },
+    {
+      "id": "076091d0-a05a-4a4f-9699-4409cfe08029",
+      "name": "Nafila",
+      "email": "nafila@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "wishlist": [],
+      "orders": [],
+      "created_at": "2025-08-12T14:03:44.964Z"
+    },
+    {
+      "id": "7cb02c5e-b02f-48d7-87a7-5c4c14b1bab4",
+      "name": "Anshif",
+      "email": "anshif@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "wishlist": [],
+      "orders": [],
+      "created_at": "2025-08-12T14:04:07.325Z"
+    },
+    {
+      "id": "97385aa7-ed62-4bca-91a2-386e03a90efd",
+      "name": "Mubeena",
+      "email": "mubeena@gmail.com",
+      "password": "1234566",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "wishlist": [],
+      "orders": [],
+      "created_at": "2025-08-12T14:04:36.396Z"
     }
   ],
   "products": [
     {
-      "id": "1",
       "name": "boAt Rockerz 480",
       "description": "boAt Rockerz 480 W/RGB LEDs, 6 Light Modes, 40Mm Drivers, Beast Mode, 60Hrs Playback, Enx Tech, BT V5.3, Adaptive Fit & Easy Access Controls, Bluetooth Over Ear Headphones(Black Sabre)",
-      "price": 799,
+      "price": 899,
       "count": 25,
       "category": "Boat",
       "images": [
@@ -203,14 +326,13 @@
         "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg"
       ],
       "isActive": true,
-      "created_at": "2023-01-15T10:00:00Z"
+      "id": "1"
     },
     {
-      "id": "2",
       "name": "Apple AirPods Max Wireless Over-Ear Headphones",
-      "description": "Pro-Level Active Noise Cancellation, Transparency Mode, Personalised Spatial Audio, USB-C Charging, Bluetooth Headphones for iPhone - Midnight",
       "price": 56990,
       "count": 8,
+      "description": "Pro-Level Active Noise Cancellation, Transparency Mode, Personalised Spatial Audio, USB-C Charging, Bluetooth Headphones for iPhone - Midnight",
       "category": "Apple",
       "images": [
         "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
@@ -218,8 +340,7 @@
         "https://m.media-amazon.com/images/I/71Wq67q-4VL._SX679_.jpg",
         "https://m.media-amazon.com/images/I/716oWra9l8L._SL1500_.jpg"
       ],
-      "isActive": true,
-      "created_at": "2023-02-20T09:30:00Z"
+      "id": "2"
     },
     {
       "id": "3",

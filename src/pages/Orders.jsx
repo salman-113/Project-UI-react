@@ -48,20 +48,25 @@ const Orders = () => {
   }, [user, navigate]);
 
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case "Processing":
-        return "bg-[#f4d58d] text-[#001427]";
-      case "Shipped":
-        return "bg-[#6a994e] text-[#f2e8cf]";
-      case "In Transit":
-        return "bg-[#708d81] text-[#f2e8cf]";
-      case "Delivered":
-        return "bg-[#386641] text-[#f2e8cf]";
-      default:
-        return "bg-gray-500 text-white";
-    }
-  };
+const getStatusColor = (status) => {
+  switch (status.toLowerCase()) {
+    case "pending":
+      return "bg-yellow-200 text-yellow-800"; 
+    case "processing":
+      return "bg-[#f4d58d] text-[#001427]"; 
+    case "shipped":
+      return "bg-[#6a994e] text-[#f2e8cf]"; 
+    case "delivered":
+      return "bg-[#386641] text-[#f2e8cf]"; 
+    case "cancelled":
+      return "bg-red-500 text-white"; 
+    case "returned":
+      return "bg-blue-500 text-white"; 
+    default:
+      return "bg-gray-300 text-black"; 
+  }
+};
+
 
   const getStatusIcon = (status) => {
     switch (status) {

@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
 export const WishlistContext = createContext();
@@ -10,7 +10,7 @@ export const WishlistProvider = ({ children }) => {
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     setUser(storedUser);
-  }, [localStorage.getItem("user")]);
+  }, []);
 
   useEffect(() => {
     const fetchWishlist = async () => {
@@ -19,7 +19,6 @@ export const WishlistProvider = ({ children }) => {
         const res = await axios.get(`http://localhost:5000/users/${user.id}`);
         setWishlist(res.data.wishlist || []);
       } catch (err) {
-        console.error("Failed to fetch wishlist", err);
       }
     };
 
@@ -58,7 +57,6 @@ export const WishlistProvider = ({ children }) => {
       });
       setWishlist(updatedWishlist);
     } catch (err) {
-      console.error("Failed to remove from wishlist", err);
     }
   };
 

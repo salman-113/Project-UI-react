@@ -1,6 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import UserLayout from "./layouts/UserLayout";
+import AdminLayout from "./layouts/AdminLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 import Home from "./pages/Home";
@@ -15,18 +20,32 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Success from "./pages/Success";
 
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import AdminDashboard from "./admin/pages/AdminDashboard";
+import AdminOrders from "./admin/pages/AdminOrders";
+import AdminProducts from "./admin/pages/AdminProducts";
+import AdminUsers from "./admin/pages/AdminUsers";
+import AdminProtectedRoute from "./admin/components/AdminProtectedRoute";
 
 const App = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <Router>
-      <div >
-        <Navbar />
-
-        <div className="flex-grow">
+      {user?.role === "admin" ? (
+        <AdminLayout>
           <Routes>
-            {/* Public Routes */}
+            <Route element={<AdminProtectedRoute />}>
+              <Route path="/" element={<AdminDashboard />} />
+              <Route path="/admin/orders" element={<AdminOrders />} />
+              <Route path="/admin/products" element={<AdminProducts />} />
+              <Route path="/admin/users" element={<AdminUsers />} />
+            </Route>
+          </Routes>
+        </AdminLayout>
+      ) : (
+
+        <UserLayout>
+          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/products" element={<Products />} />
@@ -35,19 +54,17 @@ const App = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/success" element={<Success />} />
 
-
             <Route element={<ProtectedRoute />}>
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
-              <Route path="/orders" element={<Orders />} /></Route>
+              <Route path="/orders" element={<Orders />} />
+            </Route>
           </Routes>
+        </UserLayout>
+      )}
 
-        </div>
-
-        <Footer />
-        <ToastContainer position="bottom-left" autoClose={5000} />
-      </div>
+      <ToastContainer position="bottom-left" autoClose={1000} />
     </Router>
   );
 };
