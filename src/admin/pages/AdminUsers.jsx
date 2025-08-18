@@ -37,6 +37,18 @@ const AdminUsers = () => {
     }
   };
 
+  const changeUserRole = async (userId, currentRole) => {
+    try {
+      const newRole = currentRole === 'admin' ? 'user' : 'admin';
+      await axios.patch(`http://localhost:5000/users/${userId}`, {
+        role: newRole
+      });
+      fetchUsers();
+    } catch (error) {
+      console.error("Error updating user role:", error);
+    }
+  };
+
   const toggleExpandUser = (userId) => {
     if (expandedUser === userId) {
       setExpandedUser(null);
@@ -114,12 +126,16 @@ const AdminUsers = () => {
                       </td>
                       <td className="p-3">{user.email}</td>
                       <td className="p-3">
-                        <span className={`px-2 py-1 rounded-full text-xs ${user.role === 'admin'
-                          ? 'bg-purple-100 text-purple-800'
-                          : 'bg-blue-100 text-blue-800'
-                          }`}>
+                        <button
+                          onClick={() => changeUserRole(user.id, user.role)}
+                          className={`px-2 py-1 rounded-full text-xs cursor-pointer ${user.role === 'admin'
+                            ? 'bg-purple-100 text-purple-800 hover:bg-purple-200'
+                            : 'bg-blue-100 text-blue-800 hover:bg-blue-200'
+                            }`}
+                          title={`Change to ${user.role === 'admin' ? 'user' : 'admin'}`}
+                        >
                           {user.role}
-                        </span>
+                        </button>
                       </td>
                       <td className="p-3">
                         <span className={`px-2 py-1 rounded-full text-xs ${user.isBlock ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'
@@ -159,6 +175,14 @@ const AdminUsers = () => {
                                   <span className={`ml-1 px-2 py-1 rounded-full text-xs ${user.isBlock ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'
                                     }`}>
                                     {user.isBlock ? 'Blocked' : 'Active'}
+                                  </span>
+                                </p>
+                                <p><span className="font-medium">Role:</span>
+                                  <span className={`ml-1 px-2 py-1 rounded-full text-xs ${user.role === 'admin'
+                                    ? 'bg-purple-100 text-purple-800'
+                                    : 'bg-blue-100 text-blue-800'
+                                    }`}>
+                                    {user.role}
                                   </span>
                                 </p>
                                 {user.phone && <p><span className="font-medium">Phone:</span> {user.phone}</p>}
