@@ -5,6 +5,93 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import CountUp from 'react-countup';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+const FeaturedProducts = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/products');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#E2E2B6]"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center text-red-400 py-8">
+        <p>Error loading products: {error}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+      {products.slice(0, 4).map((product) => (
+        <motion.div
+          key={product.id}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-50px" }}
+          whileHover={{ y: -5 }}
+          className="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
+        >
+          <Link to={`/product/${product.id}`} className="block">
+            <div className="relative pb-[100%]">
+              <img
+                src={product.images || "https://via.placeholder.com/400"}
+                alt={product.name}
+                className="absolute top-0 left-0 w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="p-4 sm:p-6">
+              <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{product.name}</h3>
+              <p className="text-gray-300 text-sm sm:text-base mb-3 line-clamp-2">
+                {product.description}
+              </p>
+              <div className="flex justify-between items-center">
+                <span className="text-[#E2E2B6] font-bold text-lg sm:text-xl">
+                  ₹ {product.price}
+                </span>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-[#E2E2B6] text-gray-900 px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium"
+                >
+                  View Details
+                </motion.button>
+              </div>
+            </div>
+          </Link>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
 
 const Home = () => {
 
@@ -267,6 +354,22 @@ const Home = () => {
               </motion.div>
             </div>
           </div>
+        </div>
+      </motion.section>
+      <motion.section
+        {...sectionAnimation}
+        className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[#0a192f] to-[#020617]">
+        <div className="container mx-auto px-4 sm:px-6">
+          <motion.h2
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 text-center text-white"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}>
+            Featured Products
+          </motion.h2>
+
+          <FeaturedProducts />
         </div>
       </motion.section>
 

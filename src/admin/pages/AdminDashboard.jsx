@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { FiBox, FiUsers, FiShoppingCart, FiDollarSign, FiTrendingUp, FiActivity } from "react-icons/fi";
 
@@ -10,7 +11,7 @@ const AdminDashboard = () => {
     revenue: 0,
     monthlyGrowth: 0,
     popularCategories: []
-  });
+    });     
 
   const [loading, setLoading] = useState(true);
 
@@ -45,7 +46,7 @@ const AdminDashboard = () => {
 
         const popularCategories = Object.entries(categories)
           .sort((a, b) => b[1] - a[1])
-          .slice(0, 3)
+          .slice(0, 5)
           .map(([name, count]) => ({ name, count }));
 
         setStats({
@@ -82,11 +83,12 @@ const AdminDashboard = () => {
         <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-500 font-medium">Total Products</p>
+              <p className="text-gray-500 font-medium"><Link to="/admin/products">Total Products</Link></p>
               <h2 className="text-2xl font-bold mt-1">{stats.products}</h2>
             </div>
             <div className="bg-blue-100 p-3 rounded-full">
-              <FiBox className="text-blue-500 text-xl" />
+              <Link to="/admin/products"><FiBox className="text-blue-500 text-xl" /></Link>
+
             </div>
           </div>
           <p className="text-sm text-gray-500 mt-2">+5.2% from last month</p>
@@ -95,11 +97,11 @@ const AdminDashboard = () => {
         <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-500 font-medium">Total Users</p>
+              <p className="text-gray-500 font-medium"><Link to="/admin/users">Total Users</Link></p>
               <h2 className="text-2xl font-bold mt-1">{stats.users}</h2>
             </div>
             <div className="bg-green-100 p-3 rounded-full">
-              <FiUsers className="text-green-500 text-xl" />
+              <Link to="/admin/users"><FiUsers className="text-green-500 text-xl" /></Link>
             </div>
           </div>
           <p className="text-sm text-gray-500 mt-2">+12.7% from last month</p>
@@ -108,11 +110,11 @@ const AdminDashboard = () => {
         <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-500 font-medium">Total Orders</p>
+              <p className="text-gray-500 font-medium"><Link to="/admin/orders">Total Orders</Link></p>
               <h2 className="text-2xl font-bold mt-1">{stats.orders}</h2>
             </div>
             <div className="bg-yellow-100 p-3 rounded-full">
-              <FiShoppingCart className="text-yellow-500 text-xl" />
+              <Link to="/admin/orders"><FiShoppingCart className="text-yellow-500 text-xl" /></Link>
             </div>
           </div>
           <p className="text-sm text-gray-500 mt-2">+8.3% from last month</p>
@@ -195,18 +197,16 @@ const AdminDashboard = () => {
         <div className="bg-white p-6 rounded-lg shadow-md">
           <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
           <div className="grid grid-cols-2 gap-3">
-            <button className="bg-blue-50 hover:bg-blue-100 text-blue-600 p-3 rounded-lg font-medium transition-colors">
+            <Link to="/admin/products">  <button className="bg-blue-50 hover:bg-blue-100 text-blue-600 p-3 rounded-lg font-medium transition-colors">
               Add Product
-            </button>
-            <button className="bg-green-50 hover:bg-green-100 text-green-600 p-3 rounded-lg font-medium transition-colors">
-              View Orders
-            </button>
-            <button className="bg-purple-50 hover:bg-purple-100 text-purple-600 p-3 rounded-lg font-medium transition-colors">
+            </button></Link>
+            <Link to="/admin/orders"><button className="bg-green-50 hover:bg-green-100 text-green-600 p-3 rounded-lg font-medium transition-colors">
+                 View Orders  
+            </button></Link>
+            <Link to="/admin/users"><button className="bg-purple-50 hover:bg-purple-100 text-purple-600 p-3 rounded-lg font-medium transition-colors">
               Manage Users
-            </button>
-            <button className="bg-orange-50 hover:bg-orange-100 text-orange-600 p-3 rounded-lg font-medium transition-colors">
-              Generate Report
-            </button>
+            </button></Link>
+            
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { CartContext } from "../context/CartContext";
 import { WishlistContext } from "../context/WishlistContext";
 import { toast } from "react-toastify";
-import { FiUser, FiShoppingCart, FiHeart, FiLogIn, FiMenu, FiX } from "react-icons/fi";
+import { FiUser, FiShoppingCart, FiHeart, FiLogIn, FiMenu, FiX, FiSettings } from "react-icons/fi";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -125,6 +125,19 @@ const Navbar = () => {
                   >
                     My Orders
                   </Link>
+                  <Link
+                    to="/settings"
+                    className={`block px-4 py-2 ${getNavLinkClass("/settings")}`}
+                    onClick={() => {
+                      setActivePage("/settings");
+                      setIsUserDropdownOpen(false);
+                    }}
+                  >
+                    <div className="flex items-center">
+                      <FiSettings className="mr-2" />
+                      Settings
+                    </div>
+                  </Link>
                   <button
                     onClick={handleLogout}
                     className="block w-full text-left px-4 py-2 text-[#708d81] hover:bg-[#001c3d] hover:text-[#f4d58d]"
@@ -213,6 +226,21 @@ const Navbar = () => {
                 Cart {cartCount > 0 && `(${cartCount})`}
               </div>
             </Link>
+            {user && (
+              <Link 
+                to="/settings" 
+                className={getNavLinkClass("/settings")}
+                onClick={() => {
+                  setActivePage("/settings");
+                  setIsMobileMenuOpen(false);
+                }}
+              >
+                <div className="flex items-center">
+                  <FiSettings className="mr-2" />
+                  Settings
+                </div>
+              </Link>
+            )}
           </div>
         </div>
       )}

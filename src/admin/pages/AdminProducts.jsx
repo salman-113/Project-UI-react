@@ -60,7 +60,7 @@ const AdminProducts = () => {
       price: product.price,
       count: product.count,
       category: product.category,
-      isActive: product.isActive !== false 
+      isActive: product.isActive !== false
     });
   };
 
@@ -78,7 +78,7 @@ const AdminProducts = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       const productData = {
         name: formData.name,
@@ -87,8 +87,8 @@ const AdminProducts = () => {
         count: Number(formData.count),
         category: formData.category,
         isActive: formData.isActive,
-        created_at: editingProduct ? 
-          editingProduct.created_at : 
+        created_at: editingProduct ?
+          editingProduct.created_at :
           new Date().toISOString()
       };
 
@@ -104,7 +104,7 @@ const AdminProducts = () => {
           id: newId.toString()
         });
       }
-      
+
       fetchProducts();
       cancelEditing();
       setShowAddForm(false);
@@ -271,11 +271,10 @@ const AdminProducts = () => {
                     <td className="p-3">{p.count}</td>
                     <td className="p-3">{p.category || "-"}</td>
                     <td className="p-3">
-                      <span className={`px-2 py-1 rounded-full text-xs ${
-                        p.isActive !== false ? 
-                          'bg-green-100 text-green-800' : 
-                          'bg-red-100 text-red-800'
-                      }`}>
+                      <span className={`px-2 py-1 rounded-full text-xs ${p.isActive !== false ?
+                        'bg-green-100 text-green-800' :
+                        'bg-red-100 text-red-800'
+                        }`}>
                         {p.isActive !== false ? 'Active' : 'Inactive'}
                       </span>
                     </td>

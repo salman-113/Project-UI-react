@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
         id: uuid(),
         name,
         email,
-        password,
+        password, // Note: In a real app, you should hash this password
         role: "user",
         isBlock: false,
         cart: [],
@@ -99,6 +99,44 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const updateUserPassword = async (currentPassword, newPassword, toast) => {
+    if (!user) {
+      toast.error("You must be logged in to change your password");
+      return false;
+    }
+
+    try {
+      // Verify current password
+      const res = await axios.get(
+        `http://localhost:5000/users?id=${user.id}&password=${currentPassword}`
+      );
+
+      if (res.data.length === 0) {
+        toast.error("Current password is incorrect");
+        return false;
+      }
+
+      // Update password
+      const updatedUser = {
+        ...user,
+        password: newPassword // Note: In a real app, you should hash this password
+      };
+
+      await axios.patch(`http://localhost:5000/users/${user.id}`, {
+        password: newPassword
+      });
+
+      // Update local user data
+      loginUser(updatedUser);
+      toast.success("Password updated successfully");
+      return true;
+    } catch (err) {
+      toast.error("Failed to update password");
+      console.error(err);
+      return false;
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{ 
@@ -107,7 +145,8 @@ export const AuthProvider = ({ children }) => {
         logoutUser, 
         isLoading, 
         signupUser, 
-        loginUserWithAPI 
+        loginUserWithAPI,
+        updateUserPassword 
       }}
     >
       {!isLoading && children}

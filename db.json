@@ -112,7 +112,7 @@
           ],
           "total": 15999,
           "date": "2025-08-12T14:11:46.294Z",
-          "status": "processing",
+          "status": "shipped",
           "shipping": {
             "address": "Kozhikkkode",
             "city": "Kozhikkode",
@@ -291,10 +291,28 @@
       "id": "7cb02c5e-b02f-48d7-87a7-5c4c14b1bab4",
       "name": "Anshif",
       "email": "anshif@gmail.com",
-      "password": "123456",
+      "password": "anshif",
       "role": "user",
       "isBlock": false,
-      "cart": [],
+      "cart": [
+        {
+          "id": "3",
+          "name": "Sony WH-1000XM4",
+          "description": "Industry Leading Wireless Noise Cancellation Bluetooth Over Ear Headphones with Mic for Phone Calls, 30 Hours Battery Life, Quick Charge, AUX, Touch Control and Voice Control - Black",
+          "price": 15999,
+          "count": 15,
+          "category": "Sony",
+          "images": [
+            "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
+            "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
+            "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg"
+          ],
+          "isActive": true,
+          "created_at": "2023-03-10T14:15:00Z",
+          "quantity": 1
+        }
+      ],
       "wishlist": [],
       "orders": [],
       "created_at": "2025-08-12T14:04:07.325Z"
@@ -310,6 +328,18 @@
       "wishlist": [],
       "orders": [],
       "created_at": "2025-08-12T14:04:36.396Z"
+    },
+    {
+      "id": "e0ec16d4-d87e-43b6-8654-2d1e453e2590",
+      "name": "Muahammed Nafi",
+      "email": "nafi@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "wishlist": [],
+      "orders": [],
+      "created_at": "2025-08-15T16:56:29.871Z"
     }
   ],
   "products": [
