@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import CountUp from 'react-countup';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
@@ -94,7 +94,7 @@ const FeaturedProducts = () => {
 };
 
 const Home = () => {
-
+  const swiperRef = useRef(null);
   const logos = [
     "https://cdn.shopify.com/s/files/1/0548/8849/7221/files/logo_white_text_blue.png",
     "https://cdn.shopify.com/s/files/1/0548/8849/7221/files/logo_white_text_blue.png",
@@ -203,6 +203,7 @@ const Home = () => {
 
       <section className="mb-8 sm:mb-12 w-full h-[50vh] sm:h-[60vh] md:h-[80vh] max-h-[800px] relative">
         <Swiper
+          ref={swiperRef}
           modules={[Autoplay, EffectFade]}
           effect="fade"
           autoplay={{
@@ -250,7 +251,6 @@ const Home = () => {
                       className="bg-white text-black px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm rounded-full font-medium">
                       <Link to='/products'>
                         {slide.buttonText}
-
                       </Link>
                     </motion.button>
                   </motion.div>
@@ -260,6 +260,7 @@ const Home = () => {
           ))}
         </Swiper>
       </section>
+
 
       <motion.section
         {...sectionAnimation}

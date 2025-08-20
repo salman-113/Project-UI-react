@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { CartContext } from "../context/CartContext";
@@ -7,29 +7,72 @@ import { toast } from "react-toastify";
 import { FiUser, FiShoppingCart, FiHeart, FiLogIn, FiMenu, FiX, FiSettings } from "react-icons/fi";
 
 const Navbar = () => {
-  const { user, logoutUser } = useContext(AuthContext);
-  const { cart } = useContext(CartContext);
-  const { wishlist } = useContext(WishlistContext);
+  // Router hooks
   const navigate = useNavigate();
   const location = useLocation();
   
+  // State hooks
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [activePage, setActivePage] = useState("");
+  
+  // Refs for click outside detection
+  const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+  
+  // Context hooks with proper null handling
+  const authContext = useContext(AuthContext);
+  const cartContext = useContext(CartContext);
+  const wishlistContext = useContext(WishlistContext);
+  
+  // Check if contexts are available
+  if (!authContext || !cartContext || !wishlistContext) {
+    console.error("One or more contexts are not available");
+    return null; // Or a loading state
+  }
+  
+  const { user, logoutUser } = authContext;
+  const { cart } = cartContext;
+  const { wishlist } = wishlistContext;
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsUserDropdownOpen(false);
+      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target) && 
+          !event.target.closest('button[aria-label="Mobile menu"]')) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     setActivePage(location.pathname);
   }, [location]);
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault(); // Prevent default behavior
     logoutUser();
     toast.info("Logged out successfully!");
     navigate("/login");
     setIsUserDropdownOpen(false);
   };
 
-  const toggleMobileMenu = () => {
+  const toggleMobileMenu = (e) => {
+    e.preventDefault(); // This prevents page refresh
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const toggleUserDropdown = (e) => {
+    e.preventDefault(); // This prevents page refresh
+    setIsUserDropdownOpen(!isUserDropdownOpen);
   };
 
   const getNavLinkClass = (path) => {
@@ -104,10 +147,12 @@ const Navbar = () => {
           </div>
 
           {user ? (
-            <div className="relative">
+            <div className="relative" ref={dropdownRef}>
               <button 
                 className="flex items-center space-x-1 focus:outline-none"
-                onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
+                onClick={toggleUserDropdown}
+                aria-expanded={isUserDropdownOpen}
+                aria-label="User menu"
               >
                 <FiUser className="text-[#f4d58d]" />
                 <span className="hidden md:inline text-[#708d81]">{user.name}</span>
@@ -161,6 +206,8 @@ const Navbar = () => {
           <button 
             className="md:hidden text-[#708d81] hover:text-[#f4d58d] focus:outline-none transition-colors"
             onClick={toggleMobileMenu}
+            aria-label="Mobile menu"
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
@@ -168,7 +215,10 @@ const Navbar = () => {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-[#001427] border-t border-[#708d81]/20 absolute top-full left-0 right-0 z-40 py-4 px-6">
+        <div 
+          className="md:hidden bg-[#001427] border-t border-[#708d81]/20 absolute top-full left-0 right-0 z-40 py-4 px-6"
+          ref={mobileMenuRef}
+        >
           <div className="flex flex-col space-y-4">
             <Link 
               to="/" 
@@ -227,19 +277,31 @@ const Navbar = () => {
               </div>
             </Link>
             {user && (
-              <Link 
-                to="/settings" 
-                className={getNavLinkClass("/settings")}
-                onClick={() => {
-                  setActivePage("/settings");
-                  setIsMobileMenuOpen(false);
-                }}
-              >
-                <div className="flex items-center">
-                  <FiSettings className="mr-2" />
-                  Settings
-                </div>
-              </Link>
+              <>
+                <Link 
+                  to="/orders" 
+                  className={getNavLinkClass("/orders")}
+                  onClick={() => {
+                    setActivePage("/orders");
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  My Orders
+                </Link>
+                <Link 
+                  to="/settings" 
+                  className={getNavLinkClass("/settings")}
+                  onClick={() => {
+                    setActivePage("/settings");
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  <div className="flex items-center">
+                    <FiSettings className="mr-2" />
+                    Settings
+                  </div>
+                </Link>
+              </>
             )}
           </div>
         </div>

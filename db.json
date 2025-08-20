@@ -35,7 +35,7 @@
       "email": "amina@gmail.com",
       "password": "123456",
       "role": "user",
-      "isBlock": false,
+      "isBlock": true,
       "cart": [
         {
           "name": "boAt Rockerz 480",
@@ -123,7 +123,7 @@
         }
       ],
       "created_at": "2025-08-05T13:38:10.879Z",
-      "status": "active"
+      "status": "blocked"
     },
     {
       "id": "573e40c6-255e-494d-9d73-93ca3dc39ff9",
@@ -208,7 +208,7 @@
           ],
           "total": 72989,
           "date": "2025-08-12T14:00:40.041Z",
-          "status": "delivered",
+          "status": "cancelled",
           "shipping": {
             "address": "THAYYULLATHIL",
             "city": "KOZHIKODE",
@@ -282,19 +282,23 @@
       "password": "123456",
       "role": "user",
       "isBlock": false,
-      "cart": [],
-      "wishlist": [],
-      "orders": [],
-      "created_at": "2025-08-12T14:03:44.964Z"
-    },
-    {
-      "id": "7cb02c5e-b02f-48d7-87a7-5c4c14b1bab4",
-      "name": "Anshif",
-      "email": "anshif@gmail.com",
-      "password": "anshif",
-      "role": "user",
-      "isBlock": false,
       "cart": [
+        {
+          "name": "boAt Rockerz 480",
+          "description": "boAt Rockerz 480 W/RGB LEDs, 6 Light Modes, 40Mm Drivers, Beast Mode, 60Hrs Playback, Enx Tech, BT V5.3, Adaptive Fit & Easy Access Controls, Bluetooth Over Ear Headphones(Black Sabre)",
+          "price": 899,
+          "count": 25,
+          "category": "Boat",
+          "images": [
+            "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg"
+          ],
+          "isActive": true,
+          "id": "1",
+          "quantity": 1
+        },
         {
           "id": "3",
           "name": "Sony WH-1000XM4",
@@ -314,6 +318,153 @@
         }
       ],
       "wishlist": [],
+      "orders": [],
+      "created_at": "2025-08-12T14:03:44.964Z"
+    },
+    {
+      "id": "7cb02c5e-b02f-48d7-87a7-5c4c14b1bab4",
+      "name": "Anshif",
+      "email": "anshif@gmail.com",
+      "password": "anshif",
+      "role": "user",
+      "isBlock": false,
+      "cart": [
+        {
+          "name": "boAt Rockerz 480",
+          "description": "boAt Rockerz 480 W/RGB LEDs, 6 Light Modes, 40Mm Drivers, Beast Mode, 60Hrs Playback, Enx Tech, BT V5.3, Adaptive Fit & Easy Access Controls, Bluetooth Over Ear Headphones(Black Sabre)",
+          "price": 899,
+          "count": 25,
+          "category": "Boat",
+          "images": [
+            "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg"
+          ],
+          "isActive": true,
+          "id": "1",
+          "quantity": 1
+        },
+        {
+          "id": "3",
+          "name": "Sony WH-1000XM4",
+          "description": "Industry Leading Wireless Noise Cancellation Bluetooth Over Ear Headphones with Mic for Phone Calls, 30 Hours Battery Life, Quick Charge, AUX, Touch Control and Voice Control - Black",
+          "price": 15999,
+          "count": 15,
+          "category": "Sony",
+          "images": [
+            "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
+            "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/51rpbVmi9XL._SL1200_.jpg",
+            "https://m.media-amazon.com/images/I/71joBKOGFBL._SL1500_.jpg"
+          ],
+          "isActive": true,
+          "created_at": "2023-03-10T14:15:00Z",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "name": "Sony WH-1000XM5",
+          "description": "Wireless earbuds with 6mm drivers, 5hrs playback, IPX7 waterproof",
+          "price": 25699,
+          "count": 30,
+          "category": "Boat",
+          "images": [
+            "https://m.media-amazon.com/images/I/61ULAZmt9NL._SX522_.jpg",
+            "https://m.media-amazon.com/images/I/51OGN-Nlu7L._SL1080_.jpg",
+            "https://m.media-amazon.com/images/I/61ULAZmt9NL._SX522_.jpg",
+            "https://m.media-amazon.com/images/I/51OGN-Nlu7L._SL1080_.jpg"
+          ],
+          "isActive": true,
+          "created_at": "2023-01-25T11:20:00Z",
+          "quantity": 1
+        },
+        {
+          "id": "5",
+          "name": "Bose QuietComfort Bluetooth Headphones",
+          "description": "13.6-inch Liquid Retina display, 8-core CPU, 8GB RAM, 256GB SSD",
+          "price": 29999,
+          "count": 5,
+          "category": "Bose",
+          "images": [
+            "https://m.media-amazon.com/images/I/61V2OO10-wL._SX522_.jpg",
+            "https://m.media-amazon.com/images/I/51vbNaqQxmL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61V2OO10-wL._SX522_.jpg",
+            "https://m.media-amazon.com/images/I/51vbNaqQxmL._SL1500_.jpg"
+          ],
+          "isActive": true,
+          "created_at": "2023-04-05T10:45:00Z",
+          "quantity": 1
+        },
+        {
+          "id": "6",
+          "name": "Bose QuietComfort Bluetooth Headphones",
+          "description": "43-inch 4K Ultra HD Android TV with Dolby Audio and PatchWall",
+          "price": 26999,
+          "count": 12,
+          "category": "Redmi",
+          "images": [
+            "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg"
+          ],
+          "isActive": true,
+          "created_at": "2023-03-22T16:30:00Z",
+          "quantity": 1
+        },
+        {
+          "id": "8",
+          "name": "Apple Watch Series 8",
+          "description": "45mm GPS, blood oxygen & ECG apps, Always-On Retina display",
+          "price": 45900,
+          "count": 7,
+          "category": "Apple",
+          "images": [
+            "https://m.media-amazon.com/images/I/41JACWT-wWL._SX522_.jpg",
+            "https://m.media-amazon.com/images/I/81gqmwsufOL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/41JACWT-wWL._SX522_.jpg",
+            "https://m.media-amazon.com/images/I/81gqmwsufOL._SL1500_.jpg"
+          ],
+          "isActive": true,
+          "created_at": "2023-04-12T09:15:00Z",
+          "quantity": 1
+        },
+        {
+          "id": "9",
+          "name": "Redmi Buds 3 Lite",
+          "description": "Wireless earbuds with 12mm drivers, 18hrs playback, Bluetooth v5.2",
+          "price": 1199,
+          "count": 22,
+          "category": "Redmi",
+          "images": [
+            "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61C5t1ltM5L._SL1500_.jpg"
+          ],
+          "isActive": true,
+          "created_at": "2023-03-05T14:50:00Z",
+          "quantity": 1
+        }
+      ],
+      "wishlist": [
+        {
+          "name": "boAt Rockerz 480",
+          "description": "boAt Rockerz 480 W/RGB LEDs, 6 Light Modes, 40Mm Drivers, Beast Mode, 60Hrs Playback, Enx Tech, BT V5.3, Adaptive Fit & Easy Access Controls, Bluetooth Over Ear Headphones(Black Sabre)",
+          "price": 899,
+          "count": 25,
+          "category": "Boat",
+          "images": [
+            "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/711l4y8aNlL._SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71TIEZXXxkL._SL1500_.jpg"
+          ],
+          "isActive": true,
+          "id": "1"
+        }
+      ],
       "orders": [],
       "created_at": "2025-08-12T14:04:07.325Z"
     },

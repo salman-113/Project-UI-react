@@ -18,13 +18,39 @@ const Cart = () => {
 
   const navigate = useNavigate();
 
-  const handleClearCart = () => {
+  const handleClearCart = (e) => {
+    e.preventDefault(); // Prevent default behavior
     clearCart();
     toast.success(
       <div className="flex items-center text-[#f4d58d]">
         <span className="mr-2">✓</span> Cart cleared successfully
       </div>
     );
+  };
+
+  const handleContinueShopping = (e) => {
+    e.preventDefault(); // Prevent default behavior
+    navigate("/products");
+  };
+
+  const handleCheckout = (e) => {
+    e.preventDefault(); // Prevent default behavior
+    navigate("/checkout");
+  };
+
+  const handleDecrement = (e, id) => {
+    e.preventDefault(); // Prevent default behavior
+    decrementQty(id);
+  };
+
+  const handleIncrement = (e, id) => {
+    e.preventDefault(); // Prevent default behavior
+    incrementQty(id);
+  };
+
+  const handleRemove = (e, id) => {
+    e.preventDefault(); // Prevent default behavior
+    removeFromCart(id);
   };
 
   if (loading) return (
@@ -65,7 +91,10 @@ const Cart = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => navigate("/")}
+                onClick={(e) => {
+                  e.preventDefault(); // Prevent default behavior
+                  navigate("/");
+                }}
                 className="bg-gradient-to-r from-[#8d0801] to-[#bf0603] text-[#f2e8cf] px-6 py-3 rounded-lg font-medium shadow-lg"
               >
                 Continue Shopping
@@ -115,7 +144,7 @@ const Cart = () => {
                   <div className="flex items-center gap-2">
                     <motion.button
                       whileTap={{ scale: 0.9 }}
-                      onClick={() => decrementQty(item.id)}
+                      onClick={(e) => handleDecrement(e, item.id)}
                       className="px-3 py-1 bg-[#001427]/30 text-[#f4d58d] hover:bg-[#001427]/50 rounded-lg"
                     >
                       −
@@ -125,7 +154,7 @@ const Cart = () => {
                     </span>
                     <motion.button
                       whileTap={{ scale: 0.9 }}
-                      onClick={() => incrementQty(item.id)}
+                      onClick={(e) => handleIncrement(e, item.id)}
                       className="px-3 py-1 bg-[#001427]/30 text-[#f4d58d] hover:bg-[#001427]/50 rounded-lg"
                     >
                       +
@@ -135,7 +164,7 @@ const Cart = () => {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={(e) => handleRemove(e, item.id)}
                     className="text-[#bf0603] hover:text-[#8d0801] text-sm"
                   >
                     Remove
@@ -165,7 +194,7 @@ const Cart = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => navigate("/products")}
+                  onClick={handleContinueShopping}
                   className="bg-gradient-to-r from-[#8d0801] to-[#bf0603] text-[#f2e8cf] px-6 py-3 rounded-lg font-medium shadow-lg"
                 >
                   Continue Shopping
@@ -176,7 +205,7 @@ const Cart = () => {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => navigate("/checkout")}
+              onClick={handleCheckout}
               className="w-full bg-gradient-to-r from-[#8d0801] to-[#bf0603] text-[#f2e8cf] px-6 py-4 rounded-lg font-medium shadow-lg hover:shadow-xl text-lg"
             >
               Proceed to Checkout
@@ -188,4 +217,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;  
+export default Cart;

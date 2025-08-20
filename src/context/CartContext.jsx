@@ -40,24 +40,34 @@ export const CartProvider = ({ children }) => {
   }, [user]);
 
   const addToCart = useCallback(
-  async (product) => {
-    setCart((prevCart) => {
-      const exists = prevCart.find((item) => item.id === product.id);
-      if (exists) {
-        toast.info("Item already in cart");
-        return prevCart;
+    async (product, event) => {
+      // Prevent default behavior to avoid page refresh
+      if (event && event.preventDefault) {
+        event.preventDefault();
       }
-      const updatedCart = [...prevCart, { ...product, quantity: 1 }];
-      syncCartToDB(updatedCart);
-      toast.success("Added to cart");
-      return updatedCart;
-    });
-  },
-  [syncCartToDB]
-);
+      
+      setCart((prevCart) => {
+        const exists = prevCart.find((item) => item.id === product.id);
+        if (exists) {
+          toast.info("Item already in cart");
+          return prevCart;
+        }
+        const updatedCart = [...prevCart, { ...product, quantity: 1 }];
+        syncCartToDB(updatedCart);
+        toast.success("Added to cart");
+        return updatedCart;
+      });
+    },
+    [syncCartToDB]
+  );
 
   const removeFromCart = useCallback(
-    (id) => {
+    (id, event) => {
+      // Prevent default behavior to avoid page refresh
+      if (event && event.preventDefault) {
+        event.preventDefault();
+      }
+      
       setCart((prevCart) => {
         const updatedCart = prevCart.filter((item) => item.id !== id);
         syncCartToDB(updatedCart);
@@ -68,14 +78,24 @@ export const CartProvider = ({ children }) => {
     [syncCartToDB]
   );
 
-  const clearCart = useCallback(() => {
+  const clearCart = useCallback((event) => {
+    // Prevent default behavior to avoid page refresh
+    if (event && event.preventDefault) {
+      event.preventDefault();
+    }
+    
     setCart([]);
     syncCartToDB([]);
     toast.success("Cart cleared");
   }, [syncCartToDB]);
 
   const incrementQty = useCallback(
-    (id) => {
+    (id, event) => {
+      // Prevent default behavior to avoid page refresh
+      if (event && event.preventDefault) {
+        event.preventDefault();
+      }
+      
       setCart((prevCart) => {
         const updatedCart = prevCart.map((item) =>
           item.id === id ? { ...item, quantity: item.quantity + 1 } : item
@@ -88,7 +108,12 @@ export const CartProvider = ({ children }) => {
   );
 
   const decrementQty = useCallback(
-    (id) => {
+    (id, event) => {
+      // Prevent default behavior to avoid page refresh
+      if (event && event.preventDefault) {
+        event.preventDefault();
+      }
+      
       setCart((prevCart) => {
         const updatedCart = prevCart.map((item) =>
           item.id === id && item.quantity > 1
@@ -112,19 +137,19 @@ export const CartProvider = ({ children }) => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   }, [cart]);
 
+  const contextValue = useMemo(() => ({
+    loading,
+    cart,
+    addToCart,
+    removeFromCart,
+    clearCart,
+    incrementQty,
+    decrementQty,
+    totalPrice,
+  }), [loading, cart, addToCart, removeFromCart, clearCart, incrementQty, decrementQty, totalPrice]);
+
   return (
-    <CartContext.Provider
-      value={{
-        loading,
-        cart,
-        addToCart,
-        removeFromCart,
-        clearCart,
-        incrementQty,
-        decrementQty,
-        totalPrice,
-      }}
-    >
+    <CartContext.Provider value={contextValue}>
       {children}
     </CartContext.Provider>
   );

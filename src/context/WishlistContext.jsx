@@ -14,20 +14,28 @@ export const WishlistProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchWishlist = async () => {
-      if (!user) return;
+      if (!user) {
+        setWishlist([]); 
+        return;
+      }
       try {
         const res = await axios.get(`http://localhost:5000/users/${user.id}`);
         setWishlist(res.data.wishlist || []);
       } catch (err) {
+        console.error("Failed to fetch wishlist", err);
       }
     };
 
     fetchWishlist();
   }, [user]);
 
-  const addToWishlist = async (product) => {
+  const addToWishlist = async (product, event) => {
+    // Prevent default behavior to avoid page refresh
+    if (event && event.preventDefault) {
+      event.preventDefault();
+    }
+    
     if (!user) return;
-
     try {
       const res = await axios.get(`http://localhost:5000/users/${user.id}`);
       const currentWishlist = res.data.wishlist || [];
@@ -36,20 +44,22 @@ export const WishlistProvider = ({ children }) => {
       if (exists) return;
 
       const updatedWishlist = [...currentWishlist, product];
-
       await axios.patch(`http://localhost:5000/users/${user.id}`, {
         wishlist: updatedWishlist,
       });
-
       setWishlist(updatedWishlist);
     } catch (err) {
       console.error("Failed to add to wishlist", err);
     }
   };
 
-  const removeFromWishlist = async (id) => {
+  const removeFromWishlist = async (id, event) => {
+    // Prevent default behavior to avoid page refresh
+    if (event && event.preventDefault) {
+      event.preventDefault();
+    }
+    
     if (!user) return;
-
     try {
       const updatedWishlist = wishlist.filter((item) => item.id !== id);
       await axios.patch(`http://localhost:5000/users/${user.id}`, {
@@ -57,12 +67,17 @@ export const WishlistProvider = ({ children }) => {
       });
       setWishlist(updatedWishlist);
     } catch (err) {
+      console.error("Failed to remove from wishlist", err);
     }
   };
 
-  const clearWishlist = async () => {
+  const clearWishlist = async (event) => {
+    // Prevent default behavior to avoid page refresh
+    if (event && event.preventDefault) {
+      event.preventDefault();
+    }
+    
     if (!user) return;
-
     try {
       await axios.patch(`http://localhost:5000/users/${user.id}`, {
         wishlist: [],

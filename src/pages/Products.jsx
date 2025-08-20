@@ -4,7 +4,7 @@ import ProductCard from "../components/ProductCard";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/AuthContext";
 import { motion } from "framer-motion";
-import { FiSearch, FiFilter, FiChevronDown, FiAlertCircle } from "react-icons/fi";
+import { FiSearch, FiFilter, FiChevronDown, FiAlertCircle, FiCheckCircle, FiShoppingCart } from "react-icons/fi";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -15,6 +15,9 @@ const Products = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [addingToCart, setAddingToCart] = useState(false);
+  const [fetchError, setFetchError] = useState(null);
+  const [retryCount, setRetryCount] = useState(0);
 
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 8;
@@ -25,13 +28,13 @@ const Products = () => {
     "All",
     "Boat",
     "Apple",
-    "Sony", 
+    "Sony",
     "Bose",
     "Redmi"
   ];
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProducts = async (retryAttempt = 0) => {
       setLoading(true);
       setError(null);
 
@@ -48,19 +51,24 @@ const Products = () => {
         setDisplayed(activeProducts);
       } catch (err) {
         setError(err.message || "Failed to load products");
-        toast.error(
-          <div className="flex items-center">
-            <FiAlertCircle className="mr-2" />
-            {err.message || "Failed to load products"}
-          </div>
-        );
+
+        if (retryAttempt < 3) {
+          setTimeout(() => fetchProducts(retryAttempt + 1), 1000 * (retryAttempt + 1));
+        } else {
+          toast.error(
+            <div className="flex items-center">
+              <FiAlertCircle className="mr-2" />
+              {err.message || "Failed to load products"}
+            </div>
+          );
+        }
       } finally {
         setLoading(false);
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [retryCount]);
 
   useEffect(() => {
     let filtered = [...products];
@@ -86,6 +94,8 @@ const Products = () => {
   }, [search, category, sort, products]);
 
   const handleAddToCart = async (product) => {
+    if (addingToCart) return;
+
     if (!user) {
       toast.error(
         <div className="flex items-center">
@@ -95,6 +105,8 @@ const Products = () => {
       );
       return;
     }
+
+    setAddingToCart(true);
 
     try {
       const res = await axios.get(`http://localhost:5000/users/${user.id}`);
@@ -110,6 +122,7 @@ const Products = () => {
         cart: updatedCart,
       });
 
+    
     } catch (error) {
       toast.error(
         <div className="flex items-center">
@@ -117,6 +130,8 @@ const Products = () => {
           Failed to add item to cart
         </div>
       );
+    } finally {
+      setAddingToCart(false);
     }
   };
 
@@ -168,7 +183,7 @@ const Products = () => {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-bold text-[#f4d58d] mb-4"
         >
-         GEAR UP FOR VICTORY
+          GEAR UP FOR VICTORY
         </motion.h2>
         <motion.p
           initial={{ y: 50, opacity: 0 }}
@@ -260,7 +275,7 @@ const Products = () => {
           <h3 className="text-xl font-medium text-[#f2e8cf] mb-2">Error loading products</h3>
           <p className="text-[#708d81] mb-4">{error}</p>
           <button
-            onClick={() => window.location.reload()}
+            onClick={() => setRetryCount(retryCount + 1)}
             className="px-4 py-2 bg-[#bf0603] text-[#f2e8cf] rounded-md hover:bg-[#8d0801] transition-colors"
           >
             Retry
@@ -306,6 +321,7 @@ const Products = () => {
               <ProductCard
                 product={product}
                 onAddToCart={handleAddToCart}
+                isAddingToCart={addingToCart}
                 colorPalette={{
                   background: "#001427",
                   text: "#f2e8cf",
